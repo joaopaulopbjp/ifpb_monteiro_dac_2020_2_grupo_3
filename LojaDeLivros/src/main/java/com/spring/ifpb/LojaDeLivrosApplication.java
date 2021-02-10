@@ -33,6 +33,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 	private CategoriaController cc;
 //	private CDDController cddc;
 //	private PrateleiraController pc;
+//	teste comite mateus, apagar depois
 	private UsuarioController uc;
 	private LivroController lc;
 
