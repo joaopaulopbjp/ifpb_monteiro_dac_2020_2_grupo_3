@@ -8,34 +8,37 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import com.spring.ifpb.controller.AutorController;
 import com.spring.ifpb.controller.CategoriaController;
 import com.spring.ifpb.controller.EditoraController;
+import com.spring.ifpb.controller.EstoqueController;
 import com.spring.ifpb.controller.LivroController;
+import com.spring.ifpb.controller.PedidoController;
 import com.spring.ifpb.controller.UsuarioController;
 import com.spring.ifpb.model.Autor;
 import com.spring.ifpb.model.Categoria;
 import com.spring.ifpb.model.Editora;
+import com.spring.ifpb.model.Endereco;
+import com.spring.ifpb.model.Estoque;
 import com.spring.ifpb.model.Livro;
+import com.spring.ifpb.model.Pedido;
+import com.spring.ifpb.model.Produto;
 import com.spring.ifpb.model.Usuario;
-import com.spring.ifpb.repository.LivroRepository;
+import com.spring.ifpb.repository.EstoqueRepository;
+import com.spring.ifpb.repository.PedidoRepository;
 import com.spring.ifpb.resources.CategoriaLivro;
 
 @SpringBootApplication
 public class LojaDeLivrosApplication implements CommandLineRunner {
 
+	private LivroController lc;
 	private AutorController ac;
 	private EditoraController ec;
 	private CategoriaController cc;
-//	private CDDController cddc;
-//	private PrateleiraController pc;
-//	teste comite mateus, apagar depois
 	private UsuarioController uc;
-	private LivroController lc;
+	private EstoqueController estoquec;
+	private PedidoController pc;
 
 	public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 	public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
@@ -57,14 +60,14 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 	public static final String ANSI_WHITE = "\u001B[37m";
 
 	public LojaDeLivrosApplication(LivroController lc, AutorController ac, EditoraController ec, CategoriaController cc,
-			/* CDDController cddc, PrateleiraController pc, */ UsuarioController uc) {
+			 UsuarioController uc, EstoqueController estoquec, PedidoController pc) {
 		this.ac = ac;
 		this.ec = ec;
 		this.cc = cc;
-//		this.cddc = cddc;
-//		this.pc = pc;
 		this.uc = uc;
 		this.lc = lc;
+		this.estoquec = estoquec;
+		this.pc = pc;
 	}
 
 	public static void main(String[] args) {
@@ -98,6 +101,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 
 		Livro l1 = new Livro();
 		l1.setPreco(new BigDecimal(40.00));
+		l1.setQtdEstoque(10);
 		l1.setTitulo("livro de teste 1");
 		l1.addAutor(a);
 		l1.setEditora(ed);
@@ -106,6 +110,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 
 		Livro l2 = new Livro();
 		l2.setPreco(new BigDecimal(50.00));
+		l2.setQtdEstoque(15);
 		l2.setTitulo("livro de teste 2");
 		l2.addAutor(a);
 		l2.setEditora(ed);
@@ -114,6 +119,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 
 		Livro l3 = new Livro();
 		l3.setPreco(new BigDecimal(45.00));
+		l3.setQtdEstoque(20);
 		l3.setTitulo("livro de teste 3");
 		l3.addAutor(a);
 		l3.setEditora(ed);
@@ -123,6 +129,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 		Livro l4 = new Livro();
 		l4.setPreco(new BigDecimal(50.00));
 		l4.setTitulo("livro de teste 4");
+		l3.setQtdEstoque(25);
 		l4.addAutor(a);
 		l4.setEditora(ed);
 		l4.setCategoria(ct);
@@ -201,6 +208,42 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 				.println("id: " + livro.getId() + " - " + livro.getTitulo() + " - preço: " + livro.getPreco()));
 		System.out.println(ANSI_RED + "-------------------------------------------------------------" + ANSI_RESET);
 
+
+		/*
+		 * teste de salvamento de pedido
+		 */
+		
+		Pedido ped = new Pedido();
+		Produto prod1 = new Produto(l1, 2);
+		Produto prod2 = new Produto(l2, 3);
+		Produto prod3 = new Produto(livro1, 1);
+		ped.addProduto(prod1);
+		ped.addProduto(prod2);
+		ped.addProduto(prod3);
+		pc.salvarPedido(ped);
+		
+		
+		/*
+		 * teste de salvamento de estoque
+		 */
+		Endereco end = new Endereco();
+		end.setCEP("585400-000");
+		end.setCidade("Monteiro");
+		end.setEstado("Paraíba");
+		end.setLogradoro("Rua dos Alfeneiros");
+		end.setNumero("04");
+		
+		Estoque est = new Estoque();
+		est.setEndereco(end);
+		estoquec.salvarEstoque(est);
+		est.addLivro(livro1);
+		estoquec.atualizarEstoque(est);
+		
+		
+		
+		
+		
+		
 	}
 
 }

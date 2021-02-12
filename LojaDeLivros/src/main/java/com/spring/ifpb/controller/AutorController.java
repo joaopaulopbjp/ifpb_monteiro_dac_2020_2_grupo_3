@@ -17,7 +17,8 @@ import com.spring.ifpb.repository.AutorRepository;
 @RequestMapping(value = "/Autor")
 public class AutorController {
 	
-	/*Alteração Feita Por CAIO
+	/* 
+	 * Alteraï¿½ï¿½o Feita Por CAIO
 	 * Testando o GIT 
 	 */
 

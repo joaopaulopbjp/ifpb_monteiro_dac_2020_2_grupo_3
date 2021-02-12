@@ -30,7 +30,8 @@ public class Livro {
 
 	private BigDecimal preco;
 	
-	private Integer qtd;
+	@Column(name="QTD_ESTOQUE")
+	private Integer qtdEstoque;
 
 	@ManyToOne
 	private Editora editora;
@@ -61,12 +62,12 @@ public class Livro {
 		this.preco = preco;
 	}
 
-	public Integer getQtd() {
-		return qtd;
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
 	}
 
-	public void setQtd(Integer qtd) {
-		this.qtd = qtd;
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
 	}
 
 	public Editora getEditora() {
