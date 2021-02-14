@@ -1,5 +1,7 @@
 package com.spring.ifpb;
 
+import java.util.Scanner;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +25,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 	private UsuarioController uc;
 	private EstoqueController estoquec;
 	private PedidoController pc;
-
+	private Menu menu;
 	public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 	public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
 	public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
@@ -65,7 +67,18 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 		 * criando e salvando instancias de autor, editora e categoria, para salvar no
 		 * bd e para poder atribuir a um livro para poder salva-lo no BD
 		 */
-		Menu menu = new Menu(ac,lc,ec,1);
+		Scanner input = new Scanner(System.in);
+		while(true) {
+			int opcao = -1;
+			System.out.println("Digite o que deseja fazer 1 - Cadastrar Livro, 2 - Cadastrar novo Autor, 0 - encerrar");
+			opcao = Integer.parseInt(input.nextLine());
+			if(opcao == 1)
+				menu = new Menu(ac,lc,ec,1);
+			else if(opcao == 2)
+				menu = new Menu(ac,lc,ec,2);
+			else 
+				break;
+		}
 		//menu.cadastrarAutor();
 //		Autor a = new Autor();
 //		a.setId(1l);
