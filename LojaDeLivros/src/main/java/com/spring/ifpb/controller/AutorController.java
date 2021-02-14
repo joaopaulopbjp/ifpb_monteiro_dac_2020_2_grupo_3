@@ -29,6 +29,10 @@ public class AutorController {
 	public List<Autor> listarAutores() {
 		return autorRepository.findAll();
 	}
+	
+	public Autor econtrarAutorPeloEmail(String email) {
+		return autorRepository.findByEmail(email);
+	}
 
 	@GetMapping("/{id}")
 	public Autor buscarPeloId(@PathVariable(value = "id") Long id) {

@@ -8,20 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_AUTOR" )
+@Table(name = "TB_AUTOR")
 public class Autor {
 
 	@Id
-	@Column(name="ID_AUTOR")
+	@Column(name = "ID_AUTOR")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="NOME_AUTOR")
+
+	@Column(name = "NOME_AUTOR")
 	private String nome;
 
-	
-	
-	
+	@Column(name = "EMAIL_DO_AUTOR")
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -37,7 +45,5 @@ public class Autor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
+
 }

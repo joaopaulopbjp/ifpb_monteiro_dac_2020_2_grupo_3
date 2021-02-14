@@ -10,5 +10,6 @@ public interface AutorRepository extends JpaRepository<Autor, Integer>{
 	
 	Autor findById(long id);
 	Autor findByNome(String nome);
-	
+	Autor findByEmail(String email);
+
 }
