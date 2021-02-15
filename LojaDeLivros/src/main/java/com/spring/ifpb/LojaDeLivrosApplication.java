@@ -46,7 +46,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 	public static final String ANSI_WHITE = "\u001B[37m";
 
 	public LojaDeLivrosApplication(LivroController lc, AutorController ac, EditoraController ec, CategoriaController cc,
-			 UsuarioController uc, EstoqueController estoquec, PedidoController pc) {
+			UsuarioController uc, EstoqueController estoquec, PedidoController pc) {
 		this.ac = ac;
 		this.ec = ec;
 		this.cc = cc;
@@ -68,18 +68,31 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 		 * bd e para poder atribuir a um livro para poder salva-lo no BD
 		 */
 		Scanner input = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			int opcao = -1;
-			System.out.println("Digite o que deseja fazer 1 - Cadastrar Livro, 2 - Cadastrar novo Autor, 0 - encerrar");
+			System.out.println(
+					"Digite o que deseja fazer 1 - Cadastrar Livro, 2 - Cadastrar novo Autor, 3 - deletar um livro, 4 - Fazer Update em um livro, 0 - encerrar");
 			opcao = Integer.parseInt(input.nextLine());
-			if(opcao == 1)
-				menu = new Menu(ac,lc,ec,1);
-			else if(opcao == 2)
-				menu = new Menu(ac,lc,ec,2);
-			else 
+			if (opcao == 1)
+				menu = new Menu(ac, lc, ec, 1);
+			else if (opcao == 2)
+				menu = new Menu(ac, lc, ec, 2);
+			else if (opcao == 3) {
+				System.out.println("Digite o ID do livro do qual deseja deletar :");
+				long id = Long.parseLong(input.nextLine());
+				menu = new Menu(this.lc, id, opcao);
+			} else if (opcao == 4) {
+				System.out.println("Digite o ID do livro do qual deseja fazer update :");
+				long id = Long.parseLong(input.nextLine());
+				menu = new Menu(this.lc, id, opcao);
+			}
+
+			else if (opcao == 0) {
+				System.out.println("Aplicação Encerrada");
 				break;
+			}
 		}
-		//menu.cadastrarAutor();
+		// menu.cadastrarAutor();
 //		Autor a = new Autor();
 //		a.setId(1l);
 //		a.setNome("Roger Pressman");
@@ -238,10 +251,7 @@ public class LojaDeLivrosApplication implements CommandLineRunner {
 //		estoquec.atualizarEstoque(est);
 //		
 //		
-		
-		
-		
-		
+
 	}
 
 }

@@ -15,10 +15,9 @@ import com.spring.ifpb.model.Editora;
 import com.spring.ifpb.model.Livro;
 
 public class Menu {
-	
+
 	/*
-	 * Author @Jose Caio
-	 * Opcoes para um menu de entrada
+	 * Author @Jose Caio Opcoes para um menu de entrada
 	 */
 
 	// @Autowired
@@ -37,9 +36,9 @@ public class Menu {
 	private Editora novaEditora;
 
 	private Scanner input;
-	
+
 	private int opcaoDesejada;
-	
+
 	public Menu(AutorController controladorDoAutor, LivroController controladorDoLivro,
 			EditoraController controladorDeEditora, int opcaoDeEntrada) {
 		this.controladorDoAutor = controladorDoAutor;
@@ -53,9 +52,17 @@ public class Menu {
 		this.regrasDoMenu(this.opcaoDesejada);
 
 	}
-	
+
+	public Menu(LivroController controladorDoLivro,long deleteLivroPeloId, int opcao) {
+		this.controladorDoLivro = controladorDoLivro;
+		if (opcao == 3)
+			this.deletarLivro(deleteLivroPeloId);
+		else if (opcao == 4)
+			this.atualizarLivro(deleteLivroPeloId);
+	}
+
 	public void regrasDoMenu(int opcao) {
-		if(opcao == 1)
+		if (opcao == 1)
 			this.cadastrarAutor();
 		else if (opcao == 2)
 			this.cadasttrarLivro();
@@ -92,13 +99,36 @@ public class Menu {
 			idEditora = Long.parseLong(input.nextLine());
 		}
 		/*
-		 * Abaixo a perssitencia dos dados solicitados 
+		 * Abaixo a perssitencia dos dados solicitados
 		 */
-		
+
 		novaEditora = controladorDeEditora.buscarEditora(idEditora);
 		novoLivro.addAutor(novoAutor);
 		novoLivro.setEditora(novaEditora);
 		controladorDoLivro.salvarLivro(novoLivro);
+	}
+
+	public boolean deletarLivro(long idDoLivro) {
+		Livro delete = controladorDoLivro.buscarLivro(idDoLivro);
+		if (delete.equals(null) == false) {
+			controladorDoLivro.deleteLivro(delete);
+			System.out.println("Livro deletado");
+			return true;
+		}
+		System.out.println("Livro não encontrado");
+		return false;
+
+	}
+
+	public boolean atualizarLivro(long idDoLivroParaSerAtualizado) {
+		Livro update = controladorDoLivro.buscarLivro(idDoLivroParaSerAtualizado);
+		if (update.equals(null) == false) {
+			controladorDoLivro.atualizarLivro(update);
+			System.out.println("Livro atualizado");
+			return true;
+		}
+		System.out.println("Livro não encontrado");
+		return false;
 	}
 
 }
