@@ -31,11 +31,11 @@ public class AutorController {
 	}
 	
 	public Autor econtrarAutorPeloEmail(String email) {
-		return autorRepository.findByEmail(email);
+		return null;
 	}
 
 	@GetMapping("/{id}")
-	public Autor buscarPeloId(@PathVariable(value = "id") Long id) {
+	public Autor buscarPeloId(@PathVariable(value = "id") long id) {
 		return autorRepository.findById(id);
 	}
 

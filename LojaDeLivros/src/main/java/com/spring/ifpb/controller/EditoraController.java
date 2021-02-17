@@ -27,7 +27,7 @@ public class EditoraController {
 	}
 
 	@GetMapping("/{id}")
-	public Editora buscarEditora(@PathVariable(value = "id") Long id) {
+	public Editora buscarEditora(@PathVariable(value = "id") long id) {
 		return editoraRepository.findById(id);
 	}
 
