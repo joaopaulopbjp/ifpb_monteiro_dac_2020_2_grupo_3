@@ -3,7 +3,9 @@ package com.spring.ifpb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,76 +13,62 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ifpb.model.Autor;
-import com.spring.ifpb.repository.AutorRepository;
+import com.spring.ifpb.service.AutorService;
 
-@Controller
-@RequestMapping(value = "/Autor")
+@RequestMapping("/autor")
+@Controller()
 public class AutorController {
-	
-	/* 
-	 * Altera��o Feita Por CAIO
-	 * Testando o GIT 
-	 */
-
 	@Autowired
-	private AutorRepository autorRepository;
+	private AutorService autorService;
 
-	@GetMapping
-	public List<Autor> listarAutores() {
-		return autorRepository.findAll();
+	@GetMapping("/inicio")
+	public String paginaInicial() {
+		return "pagInicial";
 	}
 	
-	public Autor econtrarAutorPeloEmail(String email) {
-		return null;
+	@GetMapping("/getAutores")
+	public String listarAutores(Model model) {
+		List<Autor> autores = autorService.findAll();
+		model.addAttribute("autores", autores);
+		return "getAutores";
+	}
+	
+	@GetMapping("/buscarPeloEmail")
+	public String econtrarAutorPeloEmail(String email, Model model) {
+		
+		model.addAttribute("buscarPeloEmail", autorService.findByEmail(email));
+		return "buscarPeloEmail";
+	}
+	
+	@GetMapping("/ola")
+	public String run(Model model) {
+		model.addAttribute("listaCompleta","Ola Mundo");
+		return "OlaMundo";
 	}
 
-	@GetMapping("/{id}")
-	public Autor buscarPeloId(@PathVariable(value = "id") long id) {
-		return autorRepository.findById(id);
-	}
-
-	@GetMapping("/{nome}")
-	public Autor buscarPeloNome(@PathVariable(value = "nome") String nome) {
-		return autorRepository.findByNome(nome);
-	}
-
-	public String salvarAutor(Autor a) {
-		if (validarAutor(a)) {
-			autorRepository.save(a);
-			return "Autor Salvo!";
-		} else
-			return "Já existe um Autor com esse mesmo nome ou id";
-	}
-
-	public boolean validarAutor(Autor a) {
-		Autor a1 = buscarPeloId(a.getId());
-		if (a1 == null)
-			return true;
-		else {
-			a1 = buscarPeloNome(a.getNome());
-			if (a1 == null) {
-				return true;
-			} else
-				return false;
-		}
-	}
-
-	@DeleteMapping
-	public String deleteAutor(Autor a) {
-		autorRepository.delete(a);
-		return "Autor excluido com sucesso!";
-	}
-
-//	@DeleteMapping
-//	public String deleteById(long id) {
-//		autorRepository.deleteById(id);
-//		return "Autor excluido com sucesso!";
+//	@GetMapping("/{id}")
+//	public Autor buscarPeloId(@PathVariable(value = "id") long id) {
+//		return autorService.findById(id);
+//	}
+//
+//	@GetMapping("/{nome}")
+//	public Autor buscarPeloNome(@PathVariable(value = "nome") String nome) {
+//		return autorService.findByNome(nome);
 //	}
 
+
+	@DeleteMapping
+	public ResponseEntity<?> delete(@PathVariable("email") String email) {
+		autorService.delete(email);
+		return ResponseEntity.ok().build();
+	}	
+
+
 	@PutMapping
-	public String atualizarAutor(Autor a) {
-		autorRepository.save(a);
-		return "Autor Atualizado";
+	public Autor atualizarAutor(String email) {
+		autorService.update(email);
+		Autor a = autorService.findByEmail(email);
+		return a;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Autor {
 
 	@Id
 	@Column(name = "ID_AUTOR")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "NOME_AUTOR")

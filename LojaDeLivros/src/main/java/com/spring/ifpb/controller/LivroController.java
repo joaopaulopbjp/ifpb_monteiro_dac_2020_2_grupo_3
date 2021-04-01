@@ -15,20 +15,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.ifpb.model.Livro;
 import com.spring.ifpb.repository.LivroRepository;
+import com.spring.ifpb.service.LivroService;
 
+@RequestMapping("/livro")
 @Controller
-@RequestMapping(value = "/Livros")
 public class LivroController {
 
 	@Autowired
 	private LivroRepository livroRepository;
+	
+	@Autowired
+	private LivroService livroService;
 
-	@GetMapping
-	public List<Livro> listarLivros() {
-		return livroRepository.findAll();
+	@RequestMapping("/getLivros")
+	public ModelAndView listarLivros() {
+		ModelAndView model = new ModelAndView("getLivros");
+		Iterable<Livro> livros= livroService.findAll();
+		model.addObject("livros", livros);
+		return model;
+		
 	}
 
 	@GetMapping("/{id}")

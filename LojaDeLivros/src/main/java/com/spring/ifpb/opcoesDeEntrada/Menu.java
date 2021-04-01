@@ -84,7 +84,7 @@ public class Menu {
 			novoAutor.setEmail(email);
 		}
 		if (novoAutor != null)
-			return servicoDeAutor.adicionarNovoAutor(novoAutor);
+			return servicoDeAutor.create(novoAutor);
 		return null;
 	}
 
@@ -92,7 +92,7 @@ public class Menu {
 		String email = "";
 		System.out.println("Digite o email do autor desejado:");
 		email = input.nextLine();
-		novoAutor = servicoDeAutor.buscarAutorPeloEmail(email);
+		novoAutor = servicoDeAutor.findByEmail(email);
 		if (novoAutor == null) {
 			System.out.println("Nenhum autor foi encontrado com esse endereço de email");
 			return null;
@@ -124,7 +124,7 @@ public class Menu {
 		System.out.println("Qual o valor do Livro ?");
 		novoLivro.setPreco(input.nextBigDecimal());
 		String email = "";
-		while (servicoDeAutor.buscarAutorPeloEmail(email) == null) {
+		while (servicoDeAutor.findByEmail(email) == null) {
 			System.out.println("Digite um email válido para encontrar o Autor(a)");
 			email = input.nextLine();
 		}
