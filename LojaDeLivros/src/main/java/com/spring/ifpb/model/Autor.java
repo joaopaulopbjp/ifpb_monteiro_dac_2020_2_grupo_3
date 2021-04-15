@@ -13,14 +13,36 @@ public class Autor {
 
 	@Id
 	@Column(name = "ID_AUTOR")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name = "NOME_AUTOR")
 	private String nome;
 
+	@Column(name = "SOBRENOME_AUTOR")
+	private String sobrenome;
+
 	@Column(name = "EMAIL_DO_AUTOR")
 	private String email;
+
+	@Column(name = "SENHA_DO_AUTOR")
+	private String senha;
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
 	public String getEmail() {
 		return email;

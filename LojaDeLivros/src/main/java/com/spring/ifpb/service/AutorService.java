@@ -24,7 +24,7 @@ public class AutorService {
 		return repositoryAutor.findByEmail(email);
 	}
 
-	public Autor findByEmail(@PathVariable(value = "id") long id) {
+	public Autor findById(@PathVariable(value = "id") long id) {
 		return repositoryAutor.findById(id);
 	}
 

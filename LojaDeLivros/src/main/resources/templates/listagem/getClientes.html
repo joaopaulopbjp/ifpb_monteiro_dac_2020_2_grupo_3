@@ -33,7 +33,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container">
 				<a class="navbar-brand" href="/autor/inicio">Livraria - Lista de
-					Autores</a>
+					Clientes</a>
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#siteDac">
@@ -47,8 +47,8 @@
 						<li class="nav-item"></li>
 						<a class="nav-link" href="#"> Sobre </a>
 						<li class="nav-item"></li>
-						<a class="nav-link" href="/autor/getAutores">Cadastrar Novo
-							Autor</a>
+						<a class="nav-link" href="/cliente/cadastrarCliente">Cadastrar Novo
+							Cliente</a>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="dropdownlivros"
 							data-toggle="dropdown"> Livros</a>
@@ -62,7 +62,7 @@
 									class="dropdown-item" href="#">Infantíl</a>
 							</div></li>
 						<li class="nav-item"></li>
-						<a class="nav-link" href="#"> Clientes</a>
+						<a class="nav-link" href="/cliente/getClientes"> Clientes</a>
 
 					</ul>
 
@@ -83,10 +83,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="autor : ${autores}">
-					<td><a th:text="${autor.id}"></span></a></td>
-					<td><span th:text="${autor.nome}"></span></td>
-					<td><span th:text="${autor.email}"></span></td>
+				<tr th:each="cliente : ${clientes}">
+					<td><a th:text="${cliente.id}"></span></a></td>
+					<td><span th:text="${cliente.nome}"></span></td>
+					<td><span th:text="${cliente.email}"></span></td>
 				</tr>
 			</tbody>
 
