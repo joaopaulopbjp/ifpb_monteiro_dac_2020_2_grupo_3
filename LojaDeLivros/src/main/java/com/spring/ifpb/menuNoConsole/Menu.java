@@ -1,4 +1,4 @@
-package com.spring.ifpb.opcoesDeEntrada;
+package com.spring.ifpb.menuNoConsole;
 
 import java.util.Scanner;
 

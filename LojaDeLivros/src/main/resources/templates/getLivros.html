@@ -28,63 +28,68 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
+	
+	<!-- aqui começa o navbar -->
 	<div>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="/autor/inicio">Livraria - Lista de
-					Livros</a>
+				<a class="navbar-brand" href="/autor/inicio">Livraria - Lista de Livros</a>
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#siteDac">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"	data-target="#siteDac">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
 				<div class="collapse navbar-collapse" id="siteDac">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"></li>
-						<a class="nav-link" href="/autor/inicio"> Inicio</a>
+							<a class="nav-link" href="/autor/inicio">Inicio</a>
 						<li class="nav-item"></li>
-						<a class="nav-link" href="#"> Sobre </a>
+							<a class="nav-link" href="#">Sobre</a>
 						<li class="nav-item"></li>
-						<a class="nav-link" href="/autor/getAutores">Cadastrar Novo
-							Livro</a>
+							<a class="nav-link" href="/autor/getAutores">Cadastrar Novo	Livro</a>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="dropdownlivros"
 							data-toggle="dropdown"> Livros</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/livro/getLivros">Todos</a> <a
-									class="dropdown-item" href="#">Romance</a> <a
-									class="dropdown-item" href="#">Drama</a> <a
-									class="dropdown-item" href="#">Ficção Científica</a> <a
-									class="dropdown-item" href="#">Humor</a> <a
-									class="dropdown-item" href="#">Conto</a> <a
-									class="dropdown-item" href="#">Infantíl</a>
-							</div></li>
+								<a class="dropdown-item" href="/livro/getLivros">Todos</a>
+								<a class="dropdown-item" href="#">Romance</a>
+								<a class="dropdown-item" href="#">Drama</a>
+								<a class="dropdown-item" href="#">Ficção Científica</a>
+								<a class="dropdown-item" href="#">Humor</a>
+								<a class="dropdown-item" href="#">Conto</a>
+								<a class="dropdown-item" href="#">Infantíl</a>
+							</div>
+						</li>
 						<li class="nav-item"></li>
 						<a class="nav-link" href="#"> Clientes</a>
-
 					</ul>
-
-
 				</div>
 			</div>
 		</nav>
 	</div>
-	<h3></h3>
+	
+	
+	<!-- aqui começa a lista -->
+	<h3></h3> <!-- espaçamento antes da lista-->
 	<div class="container">
 		<table class="table table-sm table-striped table-bordered ">
 			<thead class="thead-dark">
 				<tr>
+					<th>Qtd</th>
 					<th>Título</th>
 					<th>Valor</th>
+					<th>Autor</th>
+					<th>Editora</th>
 					<th>Categoria</th>
-
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="livro : ${livros}">
-					<td><a th:text="${livro.titulo}"></span></a></td>
+					<td><span th:text="${livro.qtdEstoque}"></span></td>
+					<td><span th:text="${livro.titulo}"></span></td>
 					<td><span th:text="${livro.preco}"></span></td>
+					<td><span th:text="${livro.autores}"></span></td>
+					<td><span th:text="${livro.editora}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
 				</tr>
 			</tbody>
