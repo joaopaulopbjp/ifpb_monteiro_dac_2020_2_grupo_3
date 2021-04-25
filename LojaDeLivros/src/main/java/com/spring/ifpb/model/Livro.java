@@ -28,6 +28,8 @@ public class Livro {
 
 	private String titulo;
 
+	private String categoria;
+	
 	private BigDecimal preco;
 	
 	@Column(name="QTD_ESTOQUE")
@@ -36,17 +38,9 @@ public class Livro {
 	@ManyToOne
 	private Editora editora;
 
-	@ManyToOne
-	private Categoria categoria;
 
 	@ManyToMany
 	private List<Autor> autores;
-	
-//	@ManyToOne
-//	private Prateleira prateleira;
-
-	
-	
 	
 	
 	public void addAutor(Autor a) {
@@ -103,20 +97,12 @@ public class Livro {
 		this.autores = autores;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
-//	public Prateleira getPrateleira() {
-//		return prateleira;
-//	}
-//
-//	public void setPrateleira(Prateleira prateleira) {
-//		this.prateleira = prateleira;
-//	}
-//	
 }

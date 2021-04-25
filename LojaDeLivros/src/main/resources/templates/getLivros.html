@@ -78,7 +78,7 @@
 					<th>Título</th>
 					<th>Valor</th>
 					<th>Categoria</th>
-
+					<th class="actions">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,10 +86,37 @@
 					<td><a th:text="${livro.titulo}"></span></a></td>
 					<td><span th:text="${livro.preco}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
+					<td class="actions"><a class="btn btn-primary btn-xs"
+						href="view.html" data-toggle="modal"
+						data-target="#modalDetalhesLivro">Detalhes</a> <a
+						class="btn btn-success btn-xs" href="edit.html">Editar</a> <a
+						class="btn btn-danger btn-xs" href="#" data-toggle="modal"
+						data-target="#modalDetalhesLivro">Excluir</a></td>
 				</tr>
+				
 			</tbody>
 
 		</table>
+
+		<div class="modal fade" id="modalDetalhesLivro" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Detalhes do Livro</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 

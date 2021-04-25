@@ -1,10 +1,8 @@
 package com.spring.ifpb.controller;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -55,10 +53,12 @@ public class LivroController {
 	 * o metodo também recebe o numero da pagina que o usuario quer que seja exiibida
 	 * retorna a lista de forma ascendente.
 	 */
-	
-	public Page<Livro> buscarPeloPrecoMenorQue(BigDecimal preco, int numPagina){
-		Pageable paginacao = PageRequest.of(numPagina, 3, Sort.by(Sort.Direction.ASC, "preco"));
-		return livroRepository.findByPrecoLessThan(preco, paginacao);
+	@RequestMapping("/getLivrosMaisBaratos")
+	public ModelAndView buscarPeloPrecoMenorQue(){
+		ModelAndView model = new ModelAndView("getLivros");
+		Iterable<Livro> livros= livroService.findAllPege();
+		model.addObject("livros", livros);
+		return model;
 	}
 	
 	@PostMapping
