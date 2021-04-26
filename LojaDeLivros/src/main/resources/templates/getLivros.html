@@ -61,7 +61,7 @@
 									class="dropdown-item" href="#">Infantíl</a>
 							</div></li>
 						<li class="nav-item"></li>
-						<a class="nav-link" href="#"> Clientes</a>
+						<a class="nav-link" href="/cliente/getClientes"> Clientes</a>
 
 					</ul>
 
@@ -82,14 +82,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="livro : ${livros}">
+					<tr th:each="livro : ${livros}">
 					<td><a th:text="${livro.titulo}"></span></a></td>
 					<td><span th:text="${livro.preco}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
 					<td class="actions"><a class="btn btn-primary btn-xs"
 						href="view.html" data-toggle="modal"
-						data-target="#modalDetalhesLivro">Detalhes</a> <a
-						class="btn btn-success btn-xs" href="edit.html">Editar</a> <a
+						data-target="#modalDetalhesLivro" data-content="${livro}">Detalhes</a> <a
+						class="btn btn-success btn-xs" href="#">Editar</a> <a
 						class="btn btn-danger btn-xs" href="#" data-toggle="modal"
 						data-target="#modalDetalhesLivro">Excluir</a></td>
 				</tr>
@@ -99,7 +99,7 @@
 		</table>
 
 		<div class="modal fade" id="modalDetalhesLivro" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-content="${livro}">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
