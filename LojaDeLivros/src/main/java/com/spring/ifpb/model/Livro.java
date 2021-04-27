@@ -23,32 +23,35 @@ public class Livro {
 
 	@Id
 	@Column(name = "ID_LIVRO")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String titulo;
 
+	private String categoria;
+
 	private BigDecimal preco;
-	
-	@Column(name="QTD_ESTOQUE")
+
+	@Column(name = "QTD_ESTOQUE")
 	private Integer qtdEstoque;
 
 	@ManyToOne
 	private Editora editora;
 
 	@ManyToOne
-	private Categoria categoria;
+	private Autor autor;
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 
 	@ManyToMany
 	private List<Autor> autores;
-	
-//	@ManyToOne
-//	private Prateleira prateleira;
 
-	
-	
-	
-	
 	public void addAutor(Autor a) {
 		autores = new ArrayList<>();
 		autores.add(a);
@@ -78,7 +81,6 @@ public class Livro {
 		this.editora = editora;
 	}
 
-
 	public Long getId() {
 		return id;
 	}
@@ -103,20 +105,12 @@ public class Livro {
 		this.autores = autores;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
-//	public Prateleira getPrateleira() {
-//		return prateleira;
-//	}
-//
-//	public void setPrateleira(Prateleira prateleira) {
-//		this.prateleira = prateleira;
-//	}
-//	
 }

@@ -10,9 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.spring.ifpb.model.Livro;
 
 @Repository
-public interface LivroRepository extends JpaRepository<Livro, Integer>{
+public interface LivroRepository extends JpaRepository<Livro, Long>{
 
-	Livro findById(Long id);
 	Livro findByTitulo(String titulo);
 	Page<Livro> findByPrecoLessThan(BigDecimal preco, Pageable paginacao);
 	

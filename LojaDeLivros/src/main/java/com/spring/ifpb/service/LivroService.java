@@ -1,12 +1,7 @@
 package com.spring.ifpb.service;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +14,13 @@ public class LivroService {
 	@Autowired
 	private LivroRepository repositoryLivro;
 	
+	
 	public List<Livro> findAll(){
 		return repositoryLivro.findAll();
+	}
+	
+	public List<Livro> findAllPege(){
+		return repositoryLivro.findAll(Sort.by(Sort.Direction.ASC, "preco"));
 	}
 	
 	public Livro livroExiste(String titulo) {
@@ -38,8 +38,12 @@ public class LivroService {
 		 repositoryLivro.delete(livro);
 	 }
 	 
-	 public Page<Livro> buscaPaginadoMenorValor(BigDecimal preco, int numDaPag){
-			Pageable paginacao = PageRequest.of(numDaPag, 3, Sort.by(Sort.Direction.ASC, "preco"));
-			return repositoryLivro.findByPrecoLessThan(preco, paginacao);
-		}
+	 public void deletarLivroId(Long id) {
+		 repositoryLivro.deleteById(id);
+	 }
+	 
+//	 public Page<Livro> buscaPaginadoMenorValor(BigDecimal preco, int numDaPag){
+//			Pageable paginacao = PageRequest.of(numDaPag, 3, Sort.by(Sort.Direction.ASC, "preco"));
+//			return repositoryLivro.findByPrecoLessThan(preco, paginacao);
+//		}
 }

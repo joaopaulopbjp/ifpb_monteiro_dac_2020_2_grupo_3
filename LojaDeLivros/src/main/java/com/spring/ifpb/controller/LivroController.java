@@ -1,24 +1,25 @@
 package com.spring.ifpb.controller;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import org.aspectj.lang.annotation.control.CodeGenerationHint;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.ifpb.model.Autor;
+import com.spring.ifpb.model.Editora;
 import com.spring.ifpb.model.Livro;
 import com.spring.ifpb.repository.LivroRepository;
+import com.spring.ifpb.service.AutorService;
+import com.spring.ifpb.service.EditoraService;
 import com.spring.ifpb.service.LivroService;
 
 @RequestMapping("/livro")
@@ -30,6 +31,12 @@ public class LivroController {
 	
 	@Autowired
 	private LivroService livroService;
+	
+	@Autowired
+	private EditoraService editoraService;
+	
+	@Autowired
+	private AutorService autorService;
 
 	@RequestMapping("/getLivros")
 	public ModelAndView listarLivros() {
@@ -39,15 +46,30 @@ public class LivroController {
 		return model;
 		
 	}
-
-	@GetMapping("/{id}")
-	public Livro buscarLivro(@PathVariable(value = "id") Long id) {
-		return livroRepository.findById(id);
+	
+	@GetMapping("/createLivro")
+	public String novoLivro(Livro novoLivro,Model model) {
+		model.addAttribute(new Livro());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("autores", autorService.findAll());
+		return "cadastro/NewLivro";
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
+	public String createLivro(Livro novoLivro,Model model) {
+		livroService.adicionarNovoLivro(novoLivro);
+		return "cadastro/NewAutor";
+	}
+
 	
 	@GetMapping("/{titulo}")
 	public Livro buscarPeloTitulo(@PathVariable(value="id") String titulo){
 		return livroRepository.findByTitulo(titulo);
+	}
+	@GetMapping("/excluir/{id}")
+	public String excluirLivro(@PathVariable(value="id") Long id) {
+		livroService.deletarLivroId(id);
+		return "getLivros";
 	}
 
 	/*
@@ -55,43 +77,16 @@ public class LivroController {
 	 * o metodo também recebe o numero da pagina que o usuario quer que seja exiibida
 	 * retorna a lista de forma ascendente.
 	 */
-	
-	public Page<Livro> buscarPeloPrecoMenorQue(BigDecimal preco, int numPagina){
-		Pageable paginacao = PageRequest.of(numPagina, 3, Sort.by(Sort.Direction.ASC, "preco"));
-		return livroRepository.findByPrecoLessThan(preco, paginacao);
+	@RequestMapping("/getLivrosMaisBaratos")
+	public ModelAndView buscarPeloPrecoMenorQue(){
+		ModelAndView model = new ModelAndView("getLivros");
+		Iterable<Livro> livros= livroService.findAllPege();
+		model.addObject("livros", livros);
+		return model;
 	}
 	
-	@PostMapping
-	public String salvarLivro(Livro l) {
-		if (livroExiste(l))
-			return "Esse já foi cadastrado antes";
-		else {
-			livroRepository.save(l);
-			return "Novo livro Salvo com sucesso!";
-		}
-	}
 	
-	public boolean livroExiste(Livro l) {					// metodo de validação para saber se o livro ja está no BD ou nao
-		try {
-			Livro l1 = buscarLivro(l.getId());
-			if (l1 == null)
-				return false;
-			else
-				return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 
-	@DeleteMapping
-	public String deleteLivro(Livro l) {
-		if (livroExiste(l)) {
-			livroRepository.delete(l);
-			return "Livro excluido com sucesso!";
-		} else {
-			return "Não existe um livro cadastrado com esse id";
-		}
-	}
 
 //	@DeleteMapping
 //	public String deleteById(long id) {

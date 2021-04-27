@@ -60,6 +60,7 @@
 							data-toggle="dropdown"> Livros </a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="/livro/getLivros">Todos</a> <a
+									class="dropdown-item" href="/livro/createLivro">Novo</a> <a
 									class="dropdown-item" href="#">Romance</a> <a
 									class="dropdown-item" href="#">Drama</a> <a
 									class="dropdown-item" href="#">Ficção Científica</a> <a
@@ -68,8 +69,8 @@
 									class="dropdown-item" href="#">Infantíl</a>
 							</div></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="dropdownlivros"
-							data-toggle="dropdown"> Clientes</a>
+							class="nav-link dropdown-toggle" href="/cliente/getClientes"
+							id="dropdownlivros" data-toggle="dropdown"> Clientes</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="/cliente/getClientes">Todos
 									os Clientes</a> <a class="dropdown-item" href="/cliente/newCliente">Novo</a>
@@ -137,6 +138,19 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	<h3></h3>
+	<div class="container">
+		<div class="card border-primary mb-3" style="max-width: 250rem;">
+			<h5 class="card-header">Destaque</h5>
+			<div class="card-body">
+				<h5 class="card-title">Livros Mais Baratos</h5>
+				<p class="card-text">Consulte nossos livros mais barato em
+					estoque.</p>
+				<a href="/livro/getLivrosMaisBaratos"
+					class="btn btn-outline-primary">Visitar</a>
+			</div>
+		</div>
 	</div>
 	</div>
 </body>

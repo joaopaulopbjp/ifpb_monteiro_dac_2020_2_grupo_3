@@ -15,7 +15,7 @@ import com.spring.ifpb.model.Editora;
 import com.spring.ifpb.repository.EditoraRepository;
 
 @Controller
-@RequestMapping(value = "/editoras")
+@RequestMapping("/editoras")
 public class EditoraController {
 
 	@Autowired
@@ -23,6 +23,7 @@ public class EditoraController {
 
 	@GetMapping
 	public List<Editora> listarEditoras() {
+		List<Editora> lista = editoraRepository.findAll();
 		return editoraRepository.findAll();
 	}
 

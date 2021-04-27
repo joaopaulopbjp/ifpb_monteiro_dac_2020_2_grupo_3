@@ -159,15 +159,5 @@ public class Menu {
 
 	}
 
-	public boolean atualizarLivro(long idDoLivroParaSerAtualizado) {
-		Livro update = controladorDoLivro.buscarLivro(idDoLivroParaSerAtualizado);
-		if (update.equals(null) == false) {
-			controladorDoLivro.atualizarLivro(update);
-			System.out.println("Livro atualizado");
-			return true;
-		}
-		System.out.println("Livro não encontrado");
-		return false;
-	}
 
 }
