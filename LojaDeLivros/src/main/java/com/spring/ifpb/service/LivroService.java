@@ -38,6 +38,10 @@ public class LivroService {
 		 repositoryLivro.delete(livro);
 	 }
 	 
+	 public void deletarLivroId(Long id) {
+		 repositoryLivro.deleteById(id);
+	 }
+	 
 //	 public Page<Livro> buscaPaginadoMenorValor(BigDecimal preco, int numDaPag){
 //			Pageable paginacao = PageRequest.of(numDaPag, 3, Sort.by(Sort.Direction.ASC, "preco"));
 //			return repositoryLivro.findByPrecoLessThan(preco, paginacao);

@@ -90,8 +90,7 @@
 						href="view.html" data-toggle="modal"
 						data-target="#modalDetalhesLivro" data-content="${livro}">Detalhes</a> <a
 						class="btn btn-success btn-xs" href="#">Editar</a> <a
-						class="btn btn-danger btn-xs" href="#" data-toggle="modal"
-						data-target="#modalDetalhesLivro">Excluir</a></td>
+						class="btn btn-danger btn-xs" th:href="@{/livro/excluir/{id}(id=${livro.id})}" >Excluir</a></td>
 				</tr>
 				
 			</tbody>

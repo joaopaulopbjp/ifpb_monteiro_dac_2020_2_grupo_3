@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <!-- Meta tags Obrigatórias -->
 <meta charset="utf-8">
@@ -93,57 +94,62 @@
 	<h3></h3>
 	<div class="container">
 		<form class="needs-validation" novalidate method="post"
-			action="/livro/createLivro">
+			action="/livro/createLivro" th:object="${livro}">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputEmail4">Título:</label> <input type="text"
-						class="form-control" id="inputEmail4" placeholder="Título do Livro"
-						name="titulo">
+						class="form-control" placeholder="Título do Livro"
+						th:field="*{titulo}">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="inputPassword4">Valor:</label> <input type="text"
-						class="form-control" id="inputPassword4" placeholder="Preço do Livro"
-						name="senha">
+						class="form-control" placeholder="Preço do Livro"
+						th:field="*{preco}">
 				</div>
 				<div class="form-group col-md-2">
 						<div class="form-row">
 							<div class="form-group">
 		   			 		<label for="exampleFormControlSelect1">Selecione Categoria</label>
-		    				<select class="form-control" id="selecionarEditora">
-		    					<option>Selecione</option>
-		    					<option>Romance</option>
-		    					<option>Drama</option>
-		    					<option>Ficção Cinetífica</option>
-		    					<option>Humor</option>
-		    					<option>Conto</option>
-		    					<option>Infantíl</option>
-		    					<option>História</option>
-		    					<option>Outra</option>
+		    				<select class="form-control"  th:field="*{categoria}">
+		    					<option value="Outra">Selecione</option>
+		    					<option value="Romance">Romance</option>
+		    					<option value="Drama">Drama</option>
+		    					<option value="Ficção Cinetífica">Ficção Cinetífica</option>
+		    					<option value="Humor">Humor</option>
+		    					<option value="Conto">Conto</option>
+		    					<option value="Infantíl">Infantíl</option>
+		    					<option value="História">História</option>
+		    					<option value="Outra">Outra</option>
 		    		</select>
 		  				</div>
 		  		</div>		
 					
 					</div>
 					<div class="form-group col-md-6">
-					<label for="inputPassword4">Quantidade:</label> <input type="number"
-						class="form-control" id="inputQuant" placeholder="Quantidade de exemplares"
-						name="quantidade">
+					<label for="inputPassword4">Quantidade:</label> 
+						<input type="number"
+						class="form-control" placeholder="Quantidade de exemplares"
+						th:field="*{qtdEstoque}">
 					</div>
 			<div class="form-group col-md-4">
 				<div class="form-group">
    			 	<label for="exampleFormControlSelect1">Selecione Editora</label>
-    			<select class="form-control" id="selecionarEditora">
-    			<option>Selecione...</option>
+    			<select class="form-control" th:field="*{editora.id}">
+    			<option th:each="editora : ${editoras}" th:value="${editora.id}"><span th:text="${editora.nome}"> Selecione... </span></option>
+    				
     		</select>
+    			
   		</div>
 			</div>
 			<div class="form-group col-md-8">
 				<div class="form-group">
    			 	<label for="exampleFormControlSelect1">Autor do Livro</label>
-    			<select class="form-control" id="selecionarEditora">
-    			<option>Selecione...</option>
+    			<select class="form-control" th:field="*{autor.id}">
+    			<option th:each="autor : ${autores}" th:value="${autor.id}"><span th:text="${autor.nome}"> Selecione... </span></option>
     		</select>
-    		
+    		<div class="alert alert-light" role="alert">
+  			<a href="/autor/getAutores" class="alert-link" target="_blank">consultar autores disponível</a>
+			</div>
     		
   		</div>
 			</div>
