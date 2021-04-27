@@ -23,10 +23,7 @@ public class AutorController {
 	@Autowired
 	private AutorService autorService;
 
-	@GetMapping("/inicio")
-	public String paginaInicial() {
-		return "pagInicial";
-	}
+
 
 	@GetMapping("/getAutores")
 	public String listarAutores(Model model) {
