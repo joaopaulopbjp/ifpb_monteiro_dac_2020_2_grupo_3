@@ -17,4 +17,9 @@ public class PaginasController {
 	public String paginaInicial() {
 		return "pagInicial";
 	}
+	
+	@GetMapping("/sobre")
+	public String paginaSobre() {
+		return "sobre";
+	}
 }

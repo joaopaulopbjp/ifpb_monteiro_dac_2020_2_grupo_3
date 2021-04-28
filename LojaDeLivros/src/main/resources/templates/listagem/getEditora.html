@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="~{pagModelo :: head('Lista de Clientes')}"></head>
+<head th:replace="~{pagModelo :: head('Pagina Inicial')}">
+<meta charset="UTF-8">
+</head>
 <body>
 	<div>
 		<navbar th:insert="~{pagModelo :: navbar}"></navbar>
+
 		<h3></h3>
 		<div class="container">
 			<table class="table table-sm table-striped table-bordered ">
@@ -12,15 +15,12 @@
 					<tr>
 						<th>Id</th>
 						<th>Nome</th>
-						<th>Email</th>
-
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cliente : ${clientes}">
-						<td><a th:text="${cliente.id}"></span></a></td>
-						<td><span th:text="${cliente.nome}"></span></td>
-						<td><span th:text="${cliente.email}"></span></td>
+					<tr th:each="editora : ${editoras}">
+						<td><a th:text="${autor.id}"></span></a></td>
+						<td><span th:text="${autor.nome}"></span></td>
 					</tr>
 				</tbody>
 
@@ -29,7 +29,5 @@
 		<script type="text/javascript"
 			src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	</div>
 </body>
-
-
-</html>

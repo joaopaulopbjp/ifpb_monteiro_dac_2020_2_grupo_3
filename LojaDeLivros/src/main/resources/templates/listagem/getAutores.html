@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="~{pagModelo :: head('Pagina Inicial')}"></head>
+<head th:replace="~{pagModelo :: head('Lista de Autores')}"></head>
 <body>
-<div>
-	<navbar th:insert="~{pagModelo :: navbar}"></navbar>
-	<h3></h3>
-	<div class="container">
-		<table class="table table-sm table-striped table-bordered ">
-			<thead class="thead-dark">
-				<tr>
-					<th>Id</th>
-					<th>Nome</th>
-					<th>Email</th>
+	<div>
+		<navbar th:insert="~{pagModelo :: navbar}"></navbar>
+		<h3></h3>
+		<div class="container">
+			<table class="table table-sm table-striped table-bordered ">
+				<thead class="thead-dark">
+					<tr>
+						<th>Id</th>
+						<th>Nome</th>
+						<th>Email</th>
 
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="autor : ${autores}">
-					<td><a th:text="${autor.id}"></span></a></td>
-					<td><span th:text="${autor.nome}"></span></td>
-					<td><span th:text="${autor.email}"></span></td>
-				</tr>
-			</tbody>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="autor : ${autores}">
+						<td><a th:text="${autor.id}"></span></a></td>
+						<td><span th:text="${autor.nome}"></span></td>
+						<td><span th:text="${autor.email}"></span></td>
+					</tr>
+				</tbody>
 
-		</table>
-	</div>
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-
+			</table>
+		</div>
+		<script type="text/javascript"
+			src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 
 
