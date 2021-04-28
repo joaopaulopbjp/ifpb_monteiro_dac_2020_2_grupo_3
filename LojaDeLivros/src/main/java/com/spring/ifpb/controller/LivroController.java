@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,19 +51,40 @@ public class LivroController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
-	public String createLivro(Livro novoLivro,Model model) {
+	public String createLivro(@ModelAttribute  Livro novoLivro,Model model) {
 		livroService.adicionarNovoLivro(novoLivro);
+		System.out.println(novoLivro.getId());
 		return "cadastro/NewAutor";
 	}
-
+	@RequestMapping(method = RequestMethod.POST, value = "/editarLivro")
+	public String EditarLivro(@ModelAttribute  Livro novoLivro,Model model) {
+		
+		livroService.adicionarNovoLivro(novoLivro);
+		System.out.println(novoLivro.getId());
+		model.addAttribute("livros",livroService.findAll());
+		return "listagem/getLivros";
+	}
+	
+	@GetMapping("/editar/{id}")
+	public String editarLivro(@PathVariable(value="id") Long id,Livro livro,Model model) {
+		
+		Livro livro1 = livroService.findById(id).get();
+		model.addAttribute("livro",livro1);
+		livro = livro1;
+		System.out.println("ID: "+livro.getId());
+		model.addAttribute("autores",autorService.findAll());
+		model.addAttribute("editoras",editoraService.findAll());
+		return "cadastro/EditarLivro";
+	}
 	
 	@GetMapping("/{titulo}")
 	public Livro buscarPeloTitulo(@PathVariable(value="id") String titulo){
 		return livroRepository.findByTitulo(titulo);
 	}
 	@GetMapping("/excluir/{id}")
-	public String excluirLivro(@PathVariable(value="id") Long id) {
+	public String excluirLivro(@PathVariable(value="id") Long id, Model model) {
 		livroService.deletarLivroId(id);
+		model.addAttribute("livros",livroService.findAll());
 		return "listagem/getLivros";
 	}
 
@@ -81,12 +103,6 @@ public class LivroController {
 	
 	
 
-
-//	@DeleteMapping
-//	public String deleteById(long id) {
-//		livroRepository.deleteById(id);
-//		return "Livro excluido com sucesso!";
-//	}
 
 	@PutMapping
 	public String atualizarLivro(Livro l) {

@@ -35,8 +35,15 @@
 		<h3></h3>
 		<div class="container">
 			<form class="needs-validation" novalidate method="post"
-				action="/livro/createLivro" th:object="${livro}">
+				action="/livro/editarLivro" th:object="${livro}">
+				
+				
 				<div class="form-row" >
+					<div class="form-group col-md-6">
+						<label for="inputEmail4">ID:</label> <input type="text"
+							class="form-control" placeholder="Id do Livro"
+							th:field="*{id}">
+					</div>
 					<div class="form-group col-md-6">
 						<label for="inputEmail4">Título:</label> <input type="text"
 							class="form-control" placeholder="Título do Livro"
@@ -93,7 +100,7 @@
 								<a href="/autor/getAutores" class="alert-link" target="_blank">consultar
 									autores disponível</a>
 							</div>
-
+							
 						</div>
 					</div>
 				</div>
