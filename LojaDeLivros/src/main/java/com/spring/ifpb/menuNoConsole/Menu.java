@@ -139,7 +139,7 @@ public class Menu {
 		 */
 
 		novaEditora = servicoDeEditora.buscarEditoraPeloId(idEditora);
-		novoLivro.addAutor(novoAutor);
+//		novoLivro.addAutor(novoAutor);
 		novoLivro.setEditora(novaEditora);
 		servicoDeLivro.adicionarNovoLivro(novoLivro);
 	}

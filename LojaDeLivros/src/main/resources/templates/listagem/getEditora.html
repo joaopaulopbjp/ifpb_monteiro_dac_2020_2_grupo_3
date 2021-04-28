@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="~{pagModelo :: head('Pagina Inicial')}">
+<head th:replace="~{pagModelo :: head('Lista de Editoras')}">
 <meta charset="UTF-8">
 </head>
 <body>
@@ -19,8 +19,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="editora : ${editoras}">
-						<td><a th:text="${autor.id}"></span></a></td>
-						<td><span th:text="${autor.nome}"></span></td>
+						<td><a th:text="${editora.id}"></span></a></td>
+						<td><span th:text="${editora.nome}"></span></td>
 					</tr>
 				</tbody>
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +15,17 @@ import com.spring.ifpb.model.Categoria;
 import com.spring.ifpb.repository.CategoriaRepository;
 
 @Controller
-@RequestMapping(value = "/categorias")
+@RequestMapping(value = "/categoria")
 public class CategoriaController {
 
 		@Autowired
 		private CategoriaRepository categoriaRepository;
 
-		@GetMapping
-		public List<Categoria> listarCategorias() {
-			return categoriaRepository.findAll();
+		@GetMapping("/listar")
+		public String listarCategorias(Model model) {
+			List<Categoria> lista = categoriaRepository.findAll();
+			model.addAttribute("categorias", lista);
+			return "listagem/getCategoria";
 		}
 		
 		@GetMapping("/{id}")

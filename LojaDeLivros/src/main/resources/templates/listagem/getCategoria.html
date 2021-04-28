@@ -7,4 +7,28 @@
 <body>
 
 	<navbar th:insert="~{pagModelo :: navbar}"></navbar>
+	<h3></h3>
+	<div class="container">
+		<table class="table table-sm table-striped table-bordered ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="categoria : ${categorias}">
+					<td><a th:text="${categoria.id}"></span></a></td>
+					<td><span th:text="${categoria.nome}"></span></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	</div>
+</body>
+
 </body>

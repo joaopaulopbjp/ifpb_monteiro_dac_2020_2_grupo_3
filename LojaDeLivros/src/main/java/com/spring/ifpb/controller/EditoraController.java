@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,10 +22,11 @@ public class EditoraController {
 	@Autowired
 	private EditoraRepository editoraRepository;
 
-	@GetMapping
-	public List<Editora> listarEditoras() {
+	@GetMapping("/listar")
+	public String listarEditoras(Model model) {
 		List<Editora> lista = editoraRepository.findAll();
-		return editoraRepository.findAll();
+		model.addAttribute("editoras",lista);
+		return "listagem/getEditora";
 	}
 
 	@GetMapping("/{id}")

@@ -41,6 +41,11 @@ public class Livro {
 	@ManyToOne
 	private Autor autor;
 
+	
+	
+	
+	
+	
 	public Autor getAutor() {
 		return autor;
 	}
@@ -49,13 +54,13 @@ public class Livro {
 		this.autor = autor;
 	}
 
-	@ManyToMany
-	private List<Autor> autores;
+//	@ManyToMany
+//	private List<Autor> autores;
 
-	public void addAutor(Autor a) {
-		autores = new ArrayList<>();
-		autores.add(a);
-	}
+//	public void addAutor(Autor a) {
+//		autores = new ArrayList<>();
+//		autores.add(a);
+//	}
 
 	public BigDecimal getPreco() {
 		return preco;
@@ -97,13 +102,13 @@ public class Livro {
 		this.titulo = titulo;
 	}
 
-	public List<Autor> getAutores() {
-		return autores;
-	}
-
-	public void setAutores(List<Autor> autores) {
-		this.autores = autores;
-	}
+//	public List<Autor> getAutores() {
+//		return autores;
+//	}
+//
+//	public void setAutores(List<Autor> autores) {
+//		this.autores = autores;
+//	}
 
 	public String getCategoria() {
 		return categoria;
