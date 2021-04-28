@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{pagModelo :: head('Pagina Inicial')}">
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<navbar th:insert="~{pagModelo :: navbar}"></navbar>
+	
+	
+	<!-- aqui começa a lista -->
+	<h3></h3> <!-- espaçamento antes da lista-->
+	<div class="container">
+		<table class="table table-sm table-striped table-bordered ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Qtd</th>
+					<th>Título</th>
+					<th>Valor</th>
+					<th>Autor</th>
+					<th>Editora</th>
+					<th>Categoria</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="livro : ${livros}">
+					<td><span th:text="${livro.qtdEstoque}"></span></td>
+					<td><span th:text="${livro.titulo}"></span></td>
+
+					<th class="actions">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr th:each="livro : ${livros}">
+					<td><a th:text="${livro.titulo}"></span></a></td>
+					<td><span th:text="${livro.preco}"></span></td>
+					<td><span th:text="${livro.autores}"></span></td>
+					<td><span th:text="${livro.editora}"></span></td>
+					<td><span th:text="${livro.categoria}"></span></td>
+					<td class="actions"><a class="btn btn-primary btn-xs"
+						href="view.html" data-toggle="modal"
+						data-target="#modalDetalhesLivro" data-content="${livro}">Detalhes</a> <a
+						class="btn btn-success btn-xs" href="#">Editar</a> <a
+						class="btn btn-danger btn-xs" th:href="@{/livro/excluir/{id}(id=${livro.id})}" >Excluir</a></td>
+				</tr>
+				
+			</tbody>
+
+		</table>
+
+		<div class="modal fade" id="modalDetalhesLivro" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-content="${livro}">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Detalhes do Livro</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>
