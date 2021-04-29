@@ -3,6 +3,7 @@ package com.spring.ifpb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,22 +48,16 @@ public class LivroController {
 		model.addAttribute(new Livro());
 		model.addAttribute("editoras", editoraService.findAll());
 		model.addAttribute("autores", autorService.findAll());
-		return "cadastro/NewLivro";
+		return "redirect:/livro/ListarLivros";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
-	public String createLivro(@ModelAttribute  Livro novoLivro,Model model) {
-		livroService.adicionarNovoLivro(novoLivro);
-		System.out.println(novoLivro.getId());
-		return "cadastro/NewAutor";
-	}
 	@RequestMapping(method = RequestMethod.POST, value = "/editarLivro")
-	public String EditarLivro(@ModelAttribute  Livro novoLivro,Model model) {
+	public String atualizarLivro(@ModelAttribute  Livro novoLivro,Model model) {
 		
 		livroService.adicionarNovoLivro(novoLivro);
 		System.out.println(novoLivro.getId());
 		model.addAttribute("livros",livroService.findAll());
-		return "listagem/getLivros";
+		return "redirect:/livro/ListarLivros";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -85,7 +80,7 @@ public class LivroController {
 	public String excluirLivro(@PathVariable(value="id") Long id, Model model) {
 		livroService.deletarLivroId(id);
 		model.addAttribute("livros",livroService.findAll());
-		return "listagem/getLivros";
+		return "redirect:/livro/ListarLivros";
 	}
 
 	/*
