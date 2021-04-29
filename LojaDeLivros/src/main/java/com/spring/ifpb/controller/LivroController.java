@@ -48,6 +48,13 @@ public class LivroController {
 		model.addAttribute(new Livro());
 		model.addAttribute("editoras", editoraService.findAll());
 		model.addAttribute("autores", autorService.findAll());
+		return "cadastro/NewLivro";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
+	public String createLivro(@ModelAttribute  Livro novoLivro,Model model) {
+		livroService.adicionarNovoLivro(novoLivro);
+		System.out.println(novoLivro.getId());
 		return "redirect:/livro/ListarLivros";
 	}
 	
