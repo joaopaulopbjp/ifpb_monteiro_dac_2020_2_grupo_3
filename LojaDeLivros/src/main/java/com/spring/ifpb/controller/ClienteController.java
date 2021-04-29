@@ -18,22 +18,18 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@GetMapping("/newCliente")
-	public String novoCliente() {
-		return "cadastro/NewCliente";
-	}
 
 	@PostMapping("/createCliente")
 	public String create(Cliente cliente) { 
 		clienteService.create(cliente);
-		return "cadastro/NewCliente";
+		return "redirect:/cliente/getClientes";
 	}
-	
-	@GetMapping("/getClientes")
-	public String listarAutores(Model model) {
-		List<Cliente> autores = clienteService.findAll();
-		model.addAttribute("clientes", autores);
-		return "listagem/getClientes";
-	}
-	
+//	
+//	@GetMapping("/getClientes")
+//	public String listarAutores(Model model) {
+//		List<Cliente> autores = clienteService.findAll();
+//		model.addAttribute("clientes", autores);
+//		return "listagem/getClientes";
+//	}
+//	
 }

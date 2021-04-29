@@ -34,22 +34,21 @@ public class LivroController {
 	@Autowired
 	private AutorService autorService;
 
-	@RequestMapping("/ListarLivros")
-	public ModelAndView listarLivros() {
-		ModelAndView model = new ModelAndView("listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAll();
-		model.addObject("livros", livros);
-		return model;
-		
-	}
+//	@RequestMapping("/ListarLivros")
+//	public ModelAndView listarLivros() {
+//		ModelAndView modelAnsView = new ModelAndView("listagem/getLivros");
+//		Iterable<Livro> livros= livroService.findAll();
+//		modelAnsView.addObject("livros", livros);
+//		return modelAnsView;
+//	}
 	
-	@GetMapping("/createLivro")
-	public String novoLivro(Livro novoLivro,Model model) {
-		model.addAttribute(new Livro());
-		model.addAttribute("editoras", editoraService.findAll());
-		model.addAttribute("autores", autorService.findAll());
-		return "cadastro/NewLivro";
-	}
+//	@GetMapping("/createLivro")
+//	public String novoLivro(Livro novoLivro,Model model) {
+//		model.addAttribute(new Livro());
+//		model.addAttribute("editoras", editoraService.findAll());
+//		model.addAttribute("autores", autorService.findAll());
+//		return "cadastro/NewLivro";
+//	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
 	public String createLivro(@ModelAttribute  Livro novoLivro,Model model) {

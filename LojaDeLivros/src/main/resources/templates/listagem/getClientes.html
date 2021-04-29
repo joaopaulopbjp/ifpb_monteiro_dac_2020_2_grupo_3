@@ -2,9 +2,10 @@
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="~{pagModelo :: head('Lista de Clientes')}"></head>
+<meta charset="UTF-8"/>
 <body>
 	<div>
-		<navbar th:insert="~{pagModelo :: navbar}"></navbar>
+		<navbar th:insert="~{pagModelo :: navbar('Lista de Clientes')}"></navbar>
 		<h3></h3>
 		<div class="container">
 			<table class="table table-sm table-striped table-bordered ">
@@ -13,6 +14,7 @@
 						<th>Id</th>
 						<th>Nome</th>
 						<th>Email</th>
+						<th>Ações</th>
 
 					</tr>
 				</thead>
@@ -21,6 +23,12 @@
 						<td><a th:text="${cliente.id}"></span></a></td>
 						<td><span th:text="${cliente.nome}"></span></td>
 						<td><span th:text="${cliente.email}"></span></td>
+						<td style="max-width: 70px;" class="actions" align="center">
+							<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
+								th:href="@{/cliente/editar/{id}(id=${cliente.id})}">Editar</a>
+							<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px"
+								th:href="@{/cliente/excluir/{id}(id=${cliente.id})}">Excluir</a>
+						</td>
 					</tr>
 				</tbody>
 

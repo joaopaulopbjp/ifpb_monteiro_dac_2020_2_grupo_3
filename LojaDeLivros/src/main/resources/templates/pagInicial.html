@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head th:replace="~{pagModelo :: head('Cadastrar Livro')}">
+<head th:replace="~{pagModelo :: head('Pagina Inicial')}">
 <meta charset="UTF-8">
+
 </head>
 <body>
-<div>
-	<navbar th:insert="~{pagModelo :: navbar}"></navbar>
-			
+
+		<navbar th:insert="~{pagModelo :: navbar('Início')}"></navbar>
+
 		<!-- apartir daqui é o carrossel com as imagens -->
 		<hr class=""></hr>
 		<div class="container">
@@ -59,8 +60,7 @@
 				</button>
 			</div>
 		</div>
-</div>
-	
+
 	<h3></h3>
 	<div class="container">
 		<div class="card border-primary mb-3" style="max-width: 250rem;">
@@ -74,6 +74,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 </body>
 </html>

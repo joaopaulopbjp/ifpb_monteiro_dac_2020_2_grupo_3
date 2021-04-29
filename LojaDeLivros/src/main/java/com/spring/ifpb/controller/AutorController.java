@@ -25,13 +25,6 @@ public class AutorController {
 
 
 
-	@GetMapping("/getAutores")
-	public String listarAutores(Model model) {
-		List<Autor> autores = autorService.findAll();
-		model.addAttribute("autores", autores);
-		return "listagem/getAutores";
-	}
-
 	@GetMapping("/{id}")
 	public String buscarPeloID(@PathVariable(value = "id")Long id, Model model) {
 		model.addAttribute("autor", autorService.findById(id));
@@ -54,13 +47,9 @@ public class AutorController {
 	@RequestMapping(method = RequestMethod.POST, value = "/createAutor")
 	public String create(Autor a) {
 		autorService.create(a);
-		return "redirect:/autor/getAutores";
+		return "redirect:/listarAutores";
 	}
 
-	@GetMapping("/cadastrarAutor")
-	public String pagCadastro() {
-		return "cadastro/NewAutor";
-	}
 
 //	@GetMapping("/{id}")
 //	public Autor buscarPeloId(@PathVariable(value = "id") long id) {

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" type="text/css" href="bg.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -27,18 +28,13 @@
 	crossorigin="anonymous"></script>
 
 
-<title th:text="${titulo}">Titulo</title>
+<title th:text="${title}">Titulo</title>
 </head>
-
 <body>
-	<!-- barra de navegação -->
-
-
-	<navbar th:fragment="navbar">
-
+	<navbar th:fragment="navbar(titulo)"> <!-- barra de navegação -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<a class="navbar-brand" href="/home">Livraria</a>
+			<a class="navbar-brand" href="/home"><img id="logo" alt="logo" src="logofinal.png">    <label id="local" th:text="${titulo}">titulo </label></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#siteDac">
 				<span class="navbar-toggler-icon"></span>
@@ -53,28 +49,30 @@
 						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
 						id="dropdownlivros" data-toggle="dropdown"> Autores</a> <!-- nome do menu -->
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/autor/getAutores">Todos os
-								Autores</a>
+							<a class="dropdown-item" href="/listarAutores">Todos os Autores</a>
 							<!-- primeiro item do dropmenu -->
-							<a class="dropdown-item" href="/autor/cadastrarAutor">Novo
-								Autor</a>
+							<a class="dropdown-item" href="/cadastrarAutor">Novo Autor</a>
 							<!-- segundo item do dropmenu -->
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<!-- drop menu -->
-						<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown">Editoras</a> <!-- nome do menu -->
+						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
+						id="dropdownlivros" data-toggle="dropdown">Editoras</a> <!-- nome do menu -->
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/editoras/listar">Todas as editoras</a>	<!-- primeiro item do dropmenu -->
-							<a class="dropdown-item" href="/cadastrarEditora">Nova Editora</a>	<!-- segundo item do dropmenu -->
+							<a class="dropdown-item" href="/listarEditoras">Todas as
+								editoras</a>
+							<!-- primeiro item do dropmenu -->
+							<a class="dropdown-item" href="/cadastrarEditora">Nova
+								Editora</a>
+							<!-- segundo item do dropmenu -->
 						</div>
 					</li>
 					<li class="nav-item dropdown">
 						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
 						id="dropdownlivros" data-toggle="dropdown"> Livros </a> <!-- nome do menu -->
 						<ul class="dropdown-menu">
-							<a class="dropdown-item" href="/livro/ListarLivros">Todos</a>
-							<a class="dropdown-item" href="/livro/createLivro">Novo</a>
+							<a class="dropdown-item" href="/listarLivros">Todos</a>
+							<a class="dropdown-item" href="/cadastrarLivro">Novo</a>
 							<a class="dropdown-item" href="#">ARTE</a>
 							<a class="dropdown-item" href="#">AUTO_AJUDA</a>
 							<a class="dropdown-item" href="#">BIOGRAFIA</a>
@@ -110,15 +108,17 @@
 						</ul>
 					</li>
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="/cliente/getClientes"
+						class="nav-link dropdown-toggle" href="#"
 						id="dropdownlivros" data-toggle="dropdown">Clientes</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/cliente/getClientes">Todos os
-								Clientes</a> <a class="dropdown-item" href="/cliente/newCliente">Novo</a>
+							<a class="dropdown-item" href="/listarClientes">Todos os
+								Clientes</a> <a class="dropdown-item" href="cadastrarCliente">Novo</a>
 						</div></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<!-- background  -->
 	</navbar>
 </body>
+</html>

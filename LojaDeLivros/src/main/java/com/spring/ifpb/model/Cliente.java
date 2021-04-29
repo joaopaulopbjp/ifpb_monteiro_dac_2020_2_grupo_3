@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "TB_USUARIO")
+@Table(name = "TB_CLIENTE")
 public class Cliente {
 
 	@Id

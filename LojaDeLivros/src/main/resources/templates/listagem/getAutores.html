@@ -2,9 +2,11 @@
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="~{pagModelo :: head('Lista de Autores')}"></head>
+<meta charset="UTF-8"/>
+
 <body>
 	<div>
-		<navbar th:insert="~{pagModelo :: navbar}"></navbar>
+		<navbar th:insert="~{pagModelo :: navbar('Lista de Autores')}"></navbar>
 		<h3></h3>
 		<div class="container">
 			<table class="table table-sm table-striped table-bordered ">
@@ -12,12 +14,19 @@
 					<tr>
 						<th>Id</th>
 						<th>Nome</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="autor : ${autores}">
 						<td><a th:text="${autor.id}"></span></a></td>
-						<td><span th:text="${autor.nome}"></span></td>
+						<td  style="opacity: opac"><span th:text="${autor.nome}"></span></td>
+						<td style="max-width: 70px;" class="actions" align="center">
+							<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
+								th:href="@{/autor/editar/{id}(id=${autor.id})}">Editar</a>
+							<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px"
+								th:href="@{/autor/excluir/{id}(id=${autor.id})}">Excluir</a>
+						</td>
 					</tr>
 				</tbody>
 

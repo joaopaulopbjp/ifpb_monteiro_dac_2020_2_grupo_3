@@ -1,0 +1,35 @@
+body{
+	width: auto;
+	height: auto;
+	background-image: url(bgLivros2.jpg);
+	background-color: white;
+}
+
+td{
+	background-color: white;
+}
+
+form{
+	background-color: white;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#sobre{
+	background-color: white;
+	margin-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#logo{
+	width: 200px;
+}
+
+#local{
+	vertical-align: bottom;
+}

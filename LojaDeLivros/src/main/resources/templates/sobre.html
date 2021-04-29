@@ -5,10 +5,10 @@
 </head>
 <body>
 <div>
-	<navbar th:insert="~{pagModelo :: navbar}"></navbar>
-	
-	<h1>Esta é a pagina de Sobre que vai falar sobre a loja</h1>
-
+	<navbar th:insert="~{pagModelo :: navbar('Sobre')}"></navbar>
+	<div class="container" id="sobre">
+		<h1>Esta é a pagina de "Sobre" que vai falar sobre a loja</h1>
+	</div>
 </div>
 
 </body>
