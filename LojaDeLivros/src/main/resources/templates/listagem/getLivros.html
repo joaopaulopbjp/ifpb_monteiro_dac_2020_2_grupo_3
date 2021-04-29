@@ -12,31 +12,32 @@
 	<!-- aqui começa a lista -->
 	<h3></h3>
 	<!-- espaçamento antes da lista-->
-	<div class="container">
-		<table class="table table-sm table-striped table-bordered ">
+	<div class="container" style="margin-left: auto;">
+		<table class="table table-sm table-striped table-bordered">
 			<thead class="thead-dark">
-				<tr>
-					<th>Qtd</th>
+				<tr align="center">
+					<th>Disponíveis</th>
 					<th>Título</th>
 					<th>Valor</th>
 					<th>Autor</th>
 					<th>Editora</th>
 					<th>Categoria</th>
+					<th>Ações</th>
 
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody align="center">
 				<tr th:each="livro : ${livros}">
 					<td><span th:text="${livro.qtdEstoque}"></span></td>
 					<td><span th:text="${livro.titulo}"></span></td>
-					<td><span th:text="${livro.preco}"></span></td>
+					<td>R$ <span th:text="${livro.preco}"></span></td>
 					<td><span th:text="${livro.autor.nome}"></span></td>
-					<td><span th:text="${livro.editora}"></span></td>
+					<td><span th:text="${livro.editora.nome}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
 					<td class="actions" align="center">
 						<a	class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px"
-							th:href="@{/livro/excluir/{id}(id=${livro.id})}">detalhes</a>
+							href="#">detalhes</a>
 						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
 							th:href="@{/livro/editar/{id}(id=${livro.id})}">Editar</a>
 						<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px" th:href="@{/livro/excluir/{id}(id=${livro.id})}">Excluir</a>

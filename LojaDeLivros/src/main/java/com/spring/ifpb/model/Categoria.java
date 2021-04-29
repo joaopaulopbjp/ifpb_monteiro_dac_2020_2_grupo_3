@@ -24,29 +24,29 @@ public class Categoria {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="DESCRICAO_CATEGORIA", unique = true)
-	private CategoriaLivro descricao;
+	private CategoriaLivro nome;
 
-	
-	
+
 	
 	
 	//METODOS
-	
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public CategoriaLivro getDescricao() {
-		return descricao;
+	
+	public CategoriaLivro getNome() {
+		return nome;
+	}
+	
+	public void setNome(CategoriaLivro nome) {
+		this.nome = nome;
 	}
 
-	public void setDescricao(CategoriaLivro descricao) {
-		this.descricao = descricao;
-	}
+	
 
 	
 }

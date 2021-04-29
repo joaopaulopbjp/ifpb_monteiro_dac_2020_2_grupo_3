@@ -34,10 +34,10 @@ public class EditoraController {
 		return editoraRepository.findById(id);
 	}
 
-	@PostMapping
+	@PostMapping("/novaEditora")
 	public String salvarLivro(Editora e) {
 		editoraRepository.save(e);
-		return "Editora Salva!";
+		return "redirect:/editoras/listar";
 	}
 
 	@DeleteMapping

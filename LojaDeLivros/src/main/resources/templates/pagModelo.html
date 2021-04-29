@@ -2,94 +2,123 @@
 <html lang="pt-br">
 
 <head th:fragment="head(titulo)">
-	<!-- metas obrigatorios -->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-		crossorigin="anonymous">
-	
-	<!-- JavaScript (Opcional) -->
-	<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-		crossorigin="anonymous"></script>
-	
-	
-	<title th:text="${titulo}">Titulo</title>
+<!-- metas obrigatorios -->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<!-- JavaScript (Opcional) -->
+<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+
+
+<title th:text="${titulo}">Titulo</title>
 </head>
 
 <body>
-<!-- barra de navegação -->
-	
+	<!-- barra de navegação -->
 
-<navbar  th:fragment="navbar">
+
+	<navbar th:fragment="navbar">
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
 			<a class="navbar-brand" href="/home">Livraria</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#siteDac">
-					<span class="navbar-toggler-icon"></span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#siteDac">
+				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="siteDac">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"></li>
-						<a class="nav-link" href="/home">Inicio</a>
+					<a class="nav-link" href="/home">Inicio</a>
 					<li class="nav-item"></li>
-						<a class="nav-link" href="/sobre">Sobre</a>
-					<li class="nav-item dropdown"><!-- drop menu -->
-						<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown"> Autores</a> <!-- nome do menu -->
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/autor/getAutores">Todos os Autores</a> <!-- primeiro item do dropmenu -->
-								<a class="dropdown-item" href="/autor/cadastrarAutor">Novo Autor</a>	<!-- segundo item do dropmenu -->
-							</div>
-					</li>
-					<li class="nav-item dropdown"><!-- drop menu -->
-						<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown"> Categorias</a> <!-- nome do menu -->
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/categoria/listar">Todas as Categorias</a> <!-- primeiro item do dropmenu -->
-								<a class="dropdown-item" href="#">Nova Categoria</a>	<!-- segundo item do dropmenu -->
-							</div>
-					</li>
-					<li class="nav-item dropdown"><!-- drop menu -->
-						<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown">Editoras</a> <!-- nome do menu -->
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/editoras/listar">Todas as editoras</a> <!-- primeiro item do dropmenu -->
-								<a class="dropdown-item" href="#">Nova Editora</a>	<!-- segundo item do dropmenu -->
-							</div>
-					</li>
-					<li class="nav-item dropdown"><!-- drop menu -->
-						<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown"> Livros </a> <!-- nome do menu --> 
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/livro/ListarLivros">Todos</a>
-								<a class="dropdown-item" href="/livro/createLivro">Novo</a>
-								<a class="dropdown-item" href="#">Romance</a>
-								<a class="dropdown-item" href="#">Drama</a>
-								<a class="dropdown-item" href="#">Ficção Científica</a>
-								<a class="dropdown-item" href="#">Humor</a>
-								<a class="dropdown-item" href="#">Conto</a>
-								<a class="dropdown-item" href="#">Infantíl</a>
-							</div>
+					<a class="nav-link" href="/sobre">Sobre</a>
+					<li class="nav-item dropdown">
+						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
+						id="dropdownlivros" data-toggle="dropdown"> Autores</a> <!-- nome do menu -->
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/autor/getAutores">Todos os
+								Autores</a>
+							<!-- primeiro item do dropmenu -->
+							<a class="dropdown-item" href="/autor/cadastrarAutor">Novo
+								Autor</a>
+							<!-- segundo item do dropmenu -->
+						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="/cliente/getClientes"	id="dropdownlivros" data-toggle="dropdown">Clientes</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/cliente/getClientes">Todos	os Clientes</a>
-								<a class="dropdown-item" href="/cliente/newCliente">Novo</a>
-							</div>
+						<!-- drop menu -->
+						<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown">Editoras</a> <!-- nome do menu -->
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/editoras/listar">Todas as editoras</a>	<!-- primeiro item do dropmenu -->
+							<a class="dropdown-item" href="/cadastrarEditora">Nova Editora</a>	<!-- segundo item do dropmenu -->
+						</div>
 					</li>
+					<li class="nav-item dropdown">
+						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
+						id="dropdownlivros" data-toggle="dropdown"> Livros </a> <!-- nome do menu -->
+						<ul class="dropdown-menu">
+							<a class="dropdown-item" href="/livro/ListarLivros">Todos</a>
+							<a class="dropdown-item" href="/livro/createLivro">Novo</a>
+							<a class="dropdown-item" href="#">ARTE</a>
+							<a class="dropdown-item" href="#">AUTO_AJUDA</a>
+							<a class="dropdown-item" href="#">BIOGRAFIA</a>
+							<a class="dropdown-item" href="#">CIENCIA</a>
+							<a class="dropdown-item" href="#">CONTOS</a>
+							<a class="dropdown-item" href="#">DIDATICO </a>
+							<a class="dropdown-item" href="#">DRAMA</a>
+							<a class="dropdown-item" href="#">EROTICO</a>
+							<a class="dropdown-item" href="#">FABULAS</a>
+							<a class="dropdown-item" href="#">FANTASIA</a>
+							<a class="dropdown-item" href="#">FICÇÃO</a>
+							<a class="dropdown-item" href="#">FOLCLORE</a>
+							<a class="dropdown-item" href="#">GIBI</a>
+							<a class="dropdown-item" href="#">HISTÓRIA</a>
+							<a class="dropdown-item" href="#">HQs</a>
+							<a class="dropdown-item" href="#">HUMOR</a>
+							<a class="dropdown-item" href="#">INFANTIL</a>
+							<a class="dropdown-item" href="#">INFANTO_JUVENIL</a>
+							<a class="dropdown-item" href="#">INFORMATICA</a>
+							<a class="dropdown-item" href="#">LGBT</a>
+							<a class="dropdown-item" href="#">LITERATURA</a>
+							<a class="dropdown-item" href="#">MANGA</a>
+							<a class="dropdown-item" href="#">MEDICINA</a>
+							<a class="dropdown-item" href="#">POEMAS</a>
+							<a class="dropdown-item" href="#">POESIA</a>
+							<a class="dropdown-item" href="#">RELIGIAO</a>
+							<a class="dropdown-item" href="#">ROMANCE</a>
+							<a class="dropdown-item" href="#">SUSPENSE</a>
+							<a class="dropdown-item" href="#">TECNICO_PROFISSIONAL</a>
+							<a class="dropdown-item" href="#">TERROR</a>
+							<a class="dropdown-item" href="#">OUTROS</a>
+
+						</ul>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="/cliente/getClientes"
+						id="dropdownlivros" data-toggle="dropdown">Clientes</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/cliente/getClientes">Todos os
+								Clientes</a> <a class="dropdown-item" href="/cliente/newCliente">Novo</a>
+						</div></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-</navbar>
+	</navbar>
 </body>

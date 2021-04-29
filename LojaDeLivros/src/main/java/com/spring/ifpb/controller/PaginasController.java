@@ -22,4 +22,9 @@ public class PaginasController {
 	public String paginaSobre() {
 		return "sobre";
 	}
+
+	@GetMapping("/cadastrarEditora")
+	public String paginaNovaCategoria() {
+		return "/cadastro/NewEditora";
+	}
 }

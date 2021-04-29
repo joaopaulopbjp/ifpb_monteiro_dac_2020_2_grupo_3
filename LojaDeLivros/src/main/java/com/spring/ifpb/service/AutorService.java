@@ -20,16 +20,16 @@ public class AutorService {
 		return repositoryAutor.save(autor);
 	}
 
-	public Autor findByEmail(String email) {
-		return repositoryAutor.findByEmail(email);
-	}
+//	public Autor findByEmail(String email) {
+//		return repositoryAutor.findByEmail(email);
+//	}
 
 	public Autor findById(@PathVariable(value = "id") long id) {
 		return repositoryAutor.findById(id);
 	}
 
-	public Autor update(String email) {
-		Autor entity = repositoryAutor.findByEmail(email);
+	public Autor update(long id) {
+		Autor entity = repositoryAutor.findById(id);
 
 		return repositoryAutor.save(entity);
 	}
@@ -39,8 +39,8 @@ public class AutorService {
 		return repositoryAutor.findAll();
 	}
 	
-	public void delete(String email) {
-		Autor entity = repositoryAutor.findByEmail(email);
+	public void delete(long id) {
+		Autor entity = repositoryAutor.findById(id);
 		repositoryAutor.delete(entity);
 	}
 }

@@ -12,15 +12,12 @@
 					<tr>
 						<th>Id</th>
 						<th>Nome</th>
-						<th>Email</th>
-
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="autor : ${autores}">
 						<td><a th:text="${autor.id}"></span></a></td>
 						<td><span th:text="${autor.nome}"></span></td>
-						<td><span th:text="${autor.email}"></span></td>
 					</tr>
 				</tbody>
 

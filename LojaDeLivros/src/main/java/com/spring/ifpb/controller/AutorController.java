@@ -32,12 +32,18 @@ public class AutorController {
 		return "listagem/getAutores";
 	}
 
-	@GetMapping("/buscarPeloEmail")
-	public String econtrarAutorPeloEmail(String email, Model model) {
-
-		model.addAttribute("buscarPeloEmail", autorService.findByEmail(email));
-		return "buscarPeloEmail";
+	@GetMapping("/{id}")
+	public String buscarPeloID(@PathVariable(value = "id")Long id, Model model) {
+		model.addAttribute("autor", autorService.findById(id));
+		return "buscarPeloID";
 	}
+//	
+//	@GetMapping("/buscarPeloEmail")
+//	public String econtrarAutorPeloEmail(String email, Model model) {
+//
+//		model.addAttribute("buscarPeloEmail", autorService.findByEmail(email));
+//		return "buscarPeloEmail";
+//	}
 
 	@GetMapping("/ola")
 	public String run(Model model) {
@@ -46,9 +52,9 @@ public class AutorController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/createAutor")
-	public String create(Autor x) {
-		autorService.create(x);
-		return "cadastro/NewAutor";
+	public String create(Autor a) {
+		autorService.create(a);
+		return "redirect:/autor/getAutores";
 	}
 
 	@GetMapping("/cadastrarAutor")
@@ -60,22 +66,22 @@ public class AutorController {
 //	public Autor buscarPeloId(@PathVariable(value = "id") long id) {
 //		return autorService.findById(id);
 //	}
-//
+
 //	@GetMapping("/{nome}")
 //	public Autor buscarPeloNome(@PathVariable(value = "nome") String nome) {
 //		return autorService.findByNome(nome);
 //	}
 
 	@DeleteMapping
-	public ResponseEntity<?> delete(@PathVariable("email") String email) {
-		autorService.delete(email);
+	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+		autorService.delete(id);
 		return ResponseEntity.ok().build();
 	}
 
 	@PutMapping
-	public Autor atualizarAutor(String email) {
-		autorService.update(email);
-		Autor a = autorService.findByEmail(email);
+	public Autor atualizarAutor(long id) {
+		autorService.update(id);
+		Autor a = autorService.findById(id);
 		return a;
 	}
 

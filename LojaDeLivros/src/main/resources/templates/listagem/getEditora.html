@@ -15,12 +15,20 @@
 					<tr>
 						<th>Id</th>
 						<th>Nome</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="editora : ${editoras}">
 						<td><a th:text="${editora.id}"></span></a></td>
 						<td><span th:text="${editora.nome}"></span></td>
+						<td class="actions" align="center"><a
+							class="btn btn-success btn-xs"
+							style="margin-left: 10px; margin-right: 10px"
+							th:href="@{/editora/editar/{id}(id=${editora.id})}">Editar</a> <a
+							class="btn btn-danger btn-xs"
+							style="margin-left: 10px; margin-right: 10px"
+							th:href="@{/editora/excluir/{id}(id=${editora.id})}">Excluir</a></td>
 					</tr>
 				</tbody>
 
