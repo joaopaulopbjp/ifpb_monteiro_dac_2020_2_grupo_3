@@ -22,14 +22,6 @@ public class ClienteController {
 	@PostMapping("/createCliente")
 	public String create(Cliente cliente) { 
 		clienteService.create(cliente);
-		return "redirect:/cliente/getClientes";
+		return "redirect:/listarClientes";
 	}
-//	
-//	@GetMapping("/getClientes")
-//	public String listarAutores(Model model) {
-//		List<Cliente> autores = clienteService.findAll();
-//		model.addAttribute("clientes", autores);
-//		return "listagem/getClientes";
-//	}
-//	
 }

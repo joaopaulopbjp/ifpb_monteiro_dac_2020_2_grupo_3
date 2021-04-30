@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" type="text/css" href="bg.css">
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -30,95 +30,183 @@
 
 <title th:text="${title}">Titulo</title>
 </head>
-<body>
-	<navbar th:fragment="navbar(titulo)"> <!-- barra de navegação -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="/home"><img id="logo" alt="logo" src="logofinal.png">    <label id="local" th:text="${titulo}">titulo </label></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#siteDac">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="siteDac">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"></li>
-					<a class="nav-link" href="/home">Inicio</a>
-					<li class="nav-item"></li>
-					<a class="nav-link" href="/sobre">Sobre</a>
-					<li class="nav-item dropdown">
-						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
-						id="dropdownlivros" data-toggle="dropdown"> Autores</a> <!-- nome do menu -->
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/listarAutores">Todos os Autores</a>
-							<!-- primeiro item do dropmenu -->
-							<a class="dropdown-item" href="/cadastrarAutor">Novo Autor</a>
-							<!-- segundo item do dropmenu -->
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
-						id="dropdownlivros" data-toggle="dropdown">Editoras</a> <!-- nome do menu -->
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/listarEditoras">Todas as
-								editoras</a>
-							<!-- primeiro item do dropmenu -->
-							<a class="dropdown-item" href="/cadastrarEditora">Nova
-								Editora</a>
-							<!-- segundo item do dropmenu -->
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
-						id="dropdownlivros" data-toggle="dropdown"> Livros </a> <!-- nome do menu -->
-						<ul class="dropdown-menu">
-							<a class="dropdown-item" href="/listarLivros">Todos</a>
-							<a class="dropdown-item" href="/cadastrarLivro">Novo</a>
-							<a class="dropdown-item" href="#">ARTE</a>
-							<a class="dropdown-item" href="#">AUTO_AJUDA</a>
-							<a class="dropdown-item" href="#">BIOGRAFIA</a>
-							<a class="dropdown-item" href="#">CIENCIA</a>
-							<a class="dropdown-item" href="#">CONTOS</a>
-							<a class="dropdown-item" href="#">DIDATICO </a>
-							<a class="dropdown-item" href="#">DRAMA</a>
-							<a class="dropdown-item" href="#">EROTICO</a>
-							<a class="dropdown-item" href="#">FABULAS</a>
-							<a class="dropdown-item" href="#">FANTASIA</a>
-							<a class="dropdown-item" href="#">FICÇÃO</a>
-							<a class="dropdown-item" href="#">FOLCLORE</a>
-							<a class="dropdown-item" href="#">GIBI</a>
-							<a class="dropdown-item" href="#">HISTÓRIA</a>
-							<a class="dropdown-item" href="#">HQs</a>
-							<a class="dropdown-item" href="#">HUMOR</a>
-							<a class="dropdown-item" href="#">INFANTIL</a>
-							<a class="dropdown-item" href="#">INFANTO_JUVENIL</a>
-							<a class="dropdown-item" href="#">INFORMATICA</a>
-							<a class="dropdown-item" href="#">LGBT</a>
-							<a class="dropdown-item" href="#">LITERATURA</a>
-							<a class="dropdown-item" href="#">MANGA</a>
-							<a class="dropdown-item" href="#">MEDICINA</a>
-							<a class="dropdown-item" href="#">POEMAS</a>
-							<a class="dropdown-item" href="#">POESIA</a>
-							<a class="dropdown-item" href="#">RELIGIAO</a>
-							<a class="dropdown-item" href="#">ROMANCE</a>
-							<a class="dropdown-item" href="#">SUSPENSE</a>
-							<a class="dropdown-item" href="#">TECNICO_PROFISSIONAL</a>
-							<a class="dropdown-item" href="#">TERROR</a>
-							<a class="dropdown-item" href="#">OUTROS</a>
 
-						</ul>
-					</li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="dropdownlivros" data-toggle="dropdown">Clientes</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/listarClientes">Todos os
-								Clientes</a> <a class="dropdown-item" href="cadastrarCliente">Novo</a>
-						</div></li>
-				</ul>
-			</div>
+
+<!-- fragmento barra de navegação admin -->
+<navbar th:fragment="navbar(titulo)">
+<link rel="stylesheet" type="text/css" href="/../css/bgAdmin.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<label href="/admin/home"><img id="logo" alt="logo"
+		src="/../imagens/logofinal.png"></label>
+	<div class="container" id="contTitulo">
+		<label id="pagTitulo" th:text="${titulo}">titulo </label> <a
+			class="navbar-brand"> </a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#siteDac">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="siteDac">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"></li>
+					<a class="nav-link" href="/admin/home">Inicio</a>
+				<li class="nav-item"></li>
+					<a class="nav-link" href="/admin/sobre">Sobre</a>
+				<li class="nav-item dropdown">
+					<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
+					id="dropdownlivros" data-toggle="dropdown"> Autores</a> <!-- nome do menu -->
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/admin/listarAutores">Todos os
+							Autores</a>
+						<!-- primeiro item do dropmenu -->
+						<a class="dropdown-item" href="/admin/cadastrarAutor">Novo Autor</a>
+						<!-- segundo item do dropmenu -->
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
+					id="dropdownlivros" data-toggle="dropdown">Editoras</a> <!-- nome do menu -->
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/admin/listarEditoras">Todas as
+							editoras</a>
+						<!-- primeiro item do dropmenu -->
+						<a class="dropdown-item" href="/admin/cadastrarEditora">Nova Editora</a>
+						<!-- segundo item do dropmenu -->
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<!-- drop menu --> <a class="nav-link dropdown-toggle" href="#"
+					id="dropdownlivros" data-toggle="dropdown"> Livros </a> <!-- nome do menu -->
+					<ul class="dropdown-menu">
+						<a class="dropdown-item" href="/admin/listarLivros">Todos</a>
+						<a class="dropdown-item" href="/admin/cadastrarLivro">Novo</a>
+						<a class="dropdown-item" href="#">ARTE</a>
+						<a class="dropdown-item" href="#">AUTO_AJUDA</a>
+						<a class="dropdown-item" href="#">BIOGRAFIA</a>
+						<a class="dropdown-item" href="#">CIENCIA</a>
+						<a class="dropdown-item" href="#">CONTOS</a>
+						<a class="dropdown-item" href="#">DIDATICO </a>
+						<a class="dropdown-item" href="#">DRAMA</a>
+						<a class="dropdown-item" href="#">EROTICO</a>
+						<a class="dropdown-item" href="#">FABULAS</a>
+						<a class="dropdown-item" href="#">FANTASIA</a>
+						<a class="dropdown-item" href="#">FICÇÃO</a>
+						<a class="dropdown-item" href="#">FOLCLORE</a>
+						<a class="dropdown-item" href="#">GIBI</a>
+						<a class="dropdown-item" href="#">HISTÓRIA</a>
+						<a class="dropdown-item" href="#">HQs</a>
+						<a class="dropdown-item" href="#">HUMOR</a>
+						<a class="dropdown-item" href="#">INFANTIL</a>
+						<a class="dropdown-item" href="#">INFANTO_JUVENIL</a>
+						<a class="dropdown-item" href="#">INFORMATICA</a>
+						<a class="dropdown-item" href="#">LGBT</a>
+						<a class="dropdown-item" href="#">LITERATURA</a>
+						<a class="dropdown-item" href="#">MANGA</a>
+						<a class="dropdown-item" href="#">MEDICINA</a>
+						<a class="dropdown-item" href="#">POEMAS</a>
+						<a class="dropdown-item" href="#">POESIA</a>
+						<a class="dropdown-item" href="#">RELIGIAO</a>
+						<a class="dropdown-item" href="#">ROMANCE</a>
+						<a class="dropdown-item" href="#">SUSPENSE</a>
+						<a class="dropdown-item" href="#">TECNICO_PROFISSIONAL</a>
+						<a class="dropdown-item" href="#">TERROR</a>
+						<a class="dropdown-item" href="#">OUTROS</a>
+
+					</ul>
+				</li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdownlivros"
+					data-toggle="dropdown">Usuários</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/admin/listarClientes">Todos os usuários</a>
+						<a class="dropdown-item" href="/admin/cadastrarCliente">Novo</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+			</ul>
 		</div>
-	</nav>
-	<!-- background  -->
-	</navbar>
-</body>
+	</div>
+</nav>
+<!-- background  -->
+</navbar>
+
+
+
+<!-- fragmento barra de navegação cliente -->
+<navuser th:fragment="navUser(titulo)">
+<link rel="stylesheet" type="text/css" href="/../css/bgCliente.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<label href="/index">
+		<img id="logo" alt="logo" src="/../imagens/logofinal.png"></label>
+	<div class="container" id="contTitulo">
+		<label id="pagTitulo" th:text="${titulo}">titulo </label> <a
+			class="navbar-brand"> </a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#siteDac">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="siteDac">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/index">Inicio</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/sobre">Sobre</a>
+				</li>
+				<li class="nav-item dropdown"> <!-- drop menu -->
+					<a class="nav-link dropdown-toggle" href="#" id="dropdownlivros" data-toggle="dropdown"> Livros </a>
+				<ul class="dropdown-menu">
+					<li class="col-sm-4">
+						<a class="dropdown-item" href="/listarLivros">Todos</a>
+						<a class="dropdown-item" href="#">ARTE</a>
+						<a class="dropdown-item" href="#">AUTO_AJUDA</a>
+						<a class="dropdown-item" href="#">BIOGRAFIA</a>
+						<a class="dropdown-item" href="#">CIENCIA</a>
+						<a class="dropdown-item" href="#">CONTOS</a>
+						<a class="dropdown-item" href="#">DIDATICO </a>
+						<a class="dropdown-item" href="#">DRAMA</a>
+						<a class="dropdown-item" href="#">EROTICO</a>
+						<a class="dropdown-item" href="#">FABULAS</a>
+						<a class="dropdown-item" href="#">FANTASIA</a>
+						<a class="dropdown-item" href="#">FICÇÃO</a>
+						<a class="dropdown-item" href="#">FOLCLORE</a>
+						<a class="dropdown-item" href="#">GIBI</a>
+						<a class="dropdown-item" href="#">HISTÓRIA</a>
+						<a class="dropdown-item" href="#">HQs</a>
+					</li>
+					<li class="col-sm-4">
+						<a class="dropdown-item" href="#">HUMOR</a>
+						<a class="dropdown-item" href="#">INFANTIL</a>
+						<a class="dropdown-item" href="#">INFANTO_JUVENIL</a>
+						<a class="dropdown-item" href="#">INFORMATICA</a>
+						<a class="dropdown-item" href="#">LGBT</a>
+						<a class="dropdown-item" href="#">LITERATURA</a>
+						<a class="dropdown-item" href="#">MANGA</a>
+						<a class="dropdown-item" href="#">MEDICINA</a>
+						<a class="dropdown-item" href="#">POEMAS</a>
+						<a class="dropdown-item" href="#">POESIA</a>
+						<a class="dropdown-item" href="#">RELIGIAO</a>
+						<a class="dropdown-item" href="#">ROMANCE</a>
+						<a class="dropdown-item" href="#">SUSPENSE</a>
+						<a class="dropdown-item" href="#">TECNICO_PROFISSIONAL</a>
+						<a class="dropdown-item" href="#">TERROR</a>
+						<a class="dropdown-item" href="#">OUTROS</a>
+					</li>
+				</ul>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/cadastrarCliente">Cadastrar-se</a>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+</navuser>
+
+
 </html>

@@ -1,0 +1,49 @@
+body{
+	width: auto;
+	height: auto;
+	background-image: url(/../imagens/bgLivros2.jpg);
+	background-size: cover;
+	background-color: white;
+}
+
+td{
+	background-color: white;
+}
+
+form{
+	background-color: white;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#sobre{
+	background-color: white;
+	margin-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#logo{
+	width: 150px;
+	margin-right: auto;
+}
+
+/* ajuste do container que tem o titulo da pagina*/
+#contTitulo{ 
+}
+
+/* titulo da pagina*/
+#pagTitulo{
+	font-size: 32px;
+	margin-left:0px;
+	vertical-align: bottom;
+}
+
+/* ajuste do carrossel */
+.d-block{
+	max-height: 500px;
+}

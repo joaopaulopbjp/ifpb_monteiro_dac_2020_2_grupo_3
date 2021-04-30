@@ -1,7 +1,7 @@
 body{
 	width: auto;
 	height: auto;
-	background-image: url(bgLivros2.jpg);
+	background-image: url(/../imagens/bgLivros.jpg);
 	background-color: white;
 }
 
@@ -27,9 +27,22 @@ form{
 }
 
 #logo{
-	width: 200px;
+	width: 150px;
+	margin-right: auto;
 }
 
-#local{
+/* ajuste do container que tem o titulo da pagina*/
+#contTitulo{ 
+}
+
+/* titulo da pagina*/
+#pagTitulo{
+	font-size: 32px;
+	margin-left:0px;
 	vertical-align: bottom;
+}
+
+/* ajuste do carrossel */
+.d-block{
+	max-height: 500px;
 }

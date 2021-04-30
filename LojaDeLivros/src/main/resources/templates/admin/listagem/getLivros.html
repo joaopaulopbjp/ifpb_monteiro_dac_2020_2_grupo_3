@@ -16,6 +16,7 @@
 		<table class="table table-sm table-striped table-bordered">
 			<thead class="thead-dark">
 				<tr align="center">
+					<th>Id</th>
 					<th>Disponíveis</th>
 					<th>Título</th>
 					<th>Valor</th>
@@ -29,6 +30,7 @@
 
 			<tbody align="center">
 				<tr th:each="livro : ${livros}">
+					<td><span th:text="${livro.id}"></span></td>
 					<td><span th:text="${livro.qtdEstoque}"></span></td>
 					<td><span th:text="${livro.titulo}"></span></td>
 					<td>R$ <span th:text="${livro.preco}"></span></td>
@@ -39,8 +41,9 @@
 						<a	class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px"
 							href="#">detalhes</a>
 						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
-							th:href="@{/livro/editar/{id}(id=${livro.id})}">Editar</a>
-						<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px" th:href="@{/livro/excluir/{id}(id=${livro.id})}">Excluir</a>
+							th:href="@{/admin/editarLivro/{id}(id=${livro.id})}">Editar</a>
+						<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px" 
+							th:href="@{/livro/excluir/{id}(id=${livro.id})}">Excluir</a>
 					</td>
 				</tr>
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,7 @@ import com.spring.ifpb.service.LivroService;
 
 @Controller
 @RequestMapping("/")
-public class PaginasController {
+public class clientePageController {
 
 	@Autowired
 	private AutorService autorService;
@@ -38,74 +39,54 @@ public class PaginasController {
 	
 	@Autowired
 	private ClienteService clienteService;
-
-	@GetMapping("/home")
-	public String home() {
-		return "pagInicial";
-	}
 	
+
 	@GetMapping
 	public String paginaInicial() {
-		return "pagInicial";
+		return "index";
+	}
+	
+	@GetMapping("index")
+	public String paginaIndex() {
+		return "index";
 	}
 	
 	@GetMapping("/sobre")
 	public String paginaSobre() {
-		return "sobre";
+		return "cliente/sobre";
+	}
+	
+	@GetMapping("/login")
+	public String paginaLogin() {
+		return "login";
 	}
 
-	
 	@RequestMapping("/listarLivros")
 	public ModelAndView listarLivros() {
-		ModelAndView modelAnsView = new ModelAndView("listagem/getLivros");
+		ModelAndView modelAnsView = new ModelAndView("admin/listagem/getLivros");
 		Iterable<Livro> livros= livroService.findAll();
 		modelAnsView.addObject("livros", livros);
 		return modelAnsView;
 	}
-	
-	@GetMapping("/cadastrarLivro")
-	public String novoLivro(Livro novoLivro,Model model) {
-		model.addAttribute(new Livro());
-		model.addAttribute("editoras", editoraService.findAll());
-		model.addAttribute("autores", autorService.findAll());
-		return "cadastro/NewLivro";
-	}
 
+	
 	@GetMapping("/listarAutores")
 	public String listarAutores(Model model) {
 		List<Autor> autores = autorService.findAll();
 		model.addAttribute("autores", autores);
-		return "listagem/getAutores";
-	}
-	
-	@GetMapping("/cadastrarAutor")
-	public String pagCadastro() {
-		return "cadastro/NewAutor";
+		return "admin/listagem/getAutores";
 	}
 
 	@GetMapping("/listarEditoras")
 	public String listarEditoras(Model model) {
 		List<Editora> lista = editoraRepository.findAll();
 		model.addAttribute("editoras",lista);
-		return "listagem/getEditora";
-	}
-	
-	@GetMapping("/cadastrarEditora")
-	public String paginaNovaCategoria() {
-		return "/cadastro/NewEditora";
-	}
-
-
-	@GetMapping("/listarClientes")
-	public String listarClientes(Model model) {
-		List<Cliente> autores = clienteService.findAll();
-		model.addAttribute("clientes", autores);
-		return "listagem/getClientes";
+		return "admin/listagem/getEditora";
 	}
 	
 	@GetMapping("/cadastrarCliente")
 	public String paginaNovoCliente() {
-		return "cadastro/NewCliente";
+		return "admin/cadastro/NewCliente";
 	}
 	
 	

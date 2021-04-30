@@ -34,48 +34,18 @@ public class LivroController {
 	@Autowired
 	private AutorService autorService;
 
-//	@RequestMapping("/ListarLivros")
-//	public ModelAndView listarLivros() {
-//		ModelAndView modelAnsView = new ModelAndView("listagem/getLivros");
-//		Iterable<Livro> livros= livroService.findAll();
-//		modelAnsView.addObject("livros", livros);
-//		return modelAnsView;
-//	}
-	
-//	@GetMapping("/createLivro")
-//	public String novoLivro(Livro novoLivro,Model model) {
-//		model.addAttribute(new Livro());
-//		model.addAttribute("editoras", editoraService.findAll());
-//		model.addAttribute("autores", autorService.findAll());
-//		return "cadastro/NewLivro";
-//	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
 	public String createLivro(@ModelAttribute  Livro novoLivro,Model model) {
 		livroService.adicionarNovoLivro(novoLivro);
-		System.out.println(novoLivro.getId());
-		return "redirect:/livro/ListarLivros";
+		return "redirect:/listarLivros";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/editarLivro")
 	public String atualizarLivro(@ModelAttribute  Livro novoLivro,Model model) {
-		
 		livroService.adicionarNovoLivro(novoLivro);
-		System.out.println(novoLivro.getId());
 		model.addAttribute("livros",livroService.findAll());
-		return "redirect:/livro/ListarLivros";
-	}
-	
-	@GetMapping("/editar/{id}")
-	public String editarLivro(@PathVariable(value="id") Long id,Livro livro,Model model) {
-		
-		Livro livro1 = livroService.findById(id).get();
-		model.addAttribute("livro",livro1);
-		livro = livro1;
-		System.out.println("ID: "+livro.getId());
-		model.addAttribute("autores",autorService.findAll());
-		model.addAttribute("editoras",editoraService.findAll());
-		return "cadastro/EditarLivro";
+		return "redirect:/listarLivros";
 	}
 	
 	@GetMapping("/{titulo}")
@@ -86,7 +56,7 @@ public class LivroController {
 	public String excluirLivro(@PathVariable(value="id") Long id, Model model) {
 		livroService.deletarLivroId(id);
 		model.addAttribute("livros",livroService.findAll());
-		return "redirect:/livro/ListarLivros";
+		return "redirect:/listarLivros";
 	}
 
 	/*
@@ -101,9 +71,6 @@ public class LivroController {
 		model.addObject("livros", livros);
 		return model;
 	}
-	
-	
-
 
 	@PutMapping
 	public String atualizarLivro(Livro l) {
