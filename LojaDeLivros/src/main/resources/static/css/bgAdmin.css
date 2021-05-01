@@ -38,8 +38,10 @@ form{
 /* titulo da pagina*/
 #pagTitulo{
 	font-size: 32px;
+	color: aqua;
 	margin-left:0px;
 	vertical-align: bottom;
+	
 }
 
 /* ajuste do carrossel */

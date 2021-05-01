@@ -64,12 +64,6 @@ public class LivroController {
 	 * o metodo também recebe o numero da pagina que o usuario quer que seja exiibida
 	 * retorna a lista de forma ascendente.
 	 */
-	@RequestMapping("/getLivrosMaisBaratos")
-	public ModelAndView buscarPeloPrecoMenorQue(){
-		ModelAndView model = new ModelAndView("admin/listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAllPage();
-		model.addObject("livros", livros);
-		return model;
-	}
+
 
 }

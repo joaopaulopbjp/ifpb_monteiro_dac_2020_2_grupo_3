@@ -52,8 +52,6 @@ public class adminPageController {
 	public String paginaSobre() {
 		return "admin/adminSobre";
 	}
-
-
 	
 	@RequestMapping("/listarLivros")
 	public ModelAndView listarLivros() {
@@ -61,6 +59,14 @@ public class adminPageController {
 		Iterable<Livro> livros= livroService.findAll();
 		modelAnsView.addObject("livros", livros);
 		return modelAnsView;
+	}
+	
+	@RequestMapping("/getLivrosMaisBaratos")
+	public ModelAndView buscarPeloPrecoMenorQue(){
+		ModelAndView model = new ModelAndView("admin/listagem/getLivros");
+		Iterable<Livro> livros= livroService.findAllPage();
+		model.addObject("livros", livros);
+		return model;
 	}
 	
 	@GetMapping("/cadastrarLivro")

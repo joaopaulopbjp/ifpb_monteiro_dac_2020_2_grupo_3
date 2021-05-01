@@ -27,35 +27,34 @@ public class clientePageController {
 
 	@Autowired
 	private AutorService autorService;
-	
+
 	@Autowired
 	private LivroService livroService;
-	
+
 	@Autowired
 	private EditoraService editoraService;
-	
+
 	@Autowired
 	private EditoraRepository editoraRepository;
-	
+
 	@Autowired
 	private ClienteService clienteService;
-	
 
 	@GetMapping
 	public String paginaInicial() {
 		return "index";
 	}
-	
+
 	@GetMapping("index")
 	public String paginaIndex() {
 		return "index";
 	}
-	
+
 	@GetMapping("/sobre")
 	public String paginaSobre() {
 		return "clientes/sobre";
 	}
-	
+
 	@GetMapping("/login")
 	public String paginaLogin() {
 		return "login";
@@ -64,12 +63,19 @@ public class clientePageController {
 	@RequestMapping("/listarLivros")
 	public ModelAndView listarLivros() {
 		ModelAndView modelAnsView = new ModelAndView("clientes/getLivros");
-		Iterable<Livro> livros= livroService.findAll();
+		Iterable<Livro> livros = livroService.findAll();
 		modelAnsView.addObject("livros", livros);
 		return modelAnsView;
 	}
 
-	
+	@RequestMapping("/livrosMaisBaratos")
+	public ModelAndView listarLivros2() {
+		ModelAndView model = new ModelAndView("clientes/getLivros");
+		Iterable<Livro> livros = livroService.findAllPage();
+		model.addObject("livros", livros);
+		return model;
+	}
+
 	@GetMapping("/listarAutores")
 	public String listarAutores(Model model) {
 		List<Autor> autores = autorService.findAll();
@@ -80,20 +86,19 @@ public class clientePageController {
 	@GetMapping("/listarEditoras")
 	public String listarEditoras(Model model) {
 		List<Editora> lista = editoraRepository.findAll();
-		model.addAttribute("editoras",lista);
+		model.addAttribute("editoras", lista);
 		return "/listagem/getEditora";
 	}
-	
+
 	@GetMapping("/cadastrarCliente")
 	public String paginaNovoCliente() {
 		return "clientes/NovoCliente";
 	}
-	
+
 	@PostMapping("/createCliente")
-	public String create(Cliente cliente) { 
+	public String create(Cliente cliente) {
 		clienteService.create(cliente);
 		return "redirect:/login";
 	}
-	
-	
+
 }
