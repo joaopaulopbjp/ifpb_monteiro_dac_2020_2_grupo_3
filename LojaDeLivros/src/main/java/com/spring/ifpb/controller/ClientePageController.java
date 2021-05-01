@@ -22,109 +22,83 @@ import com.spring.ifpb.service.EditoraService;
 import com.spring.ifpb.service.LivroService;
 
 @Controller
-@RequestMapping("/admin")
-public class adminPageController {
+@RequestMapping("/")
+public class ClientePageController {
 
 	@Autowired
 	private AutorService autorService;
-	
+
 	@Autowired
 	private LivroService livroService;
-	
+
 	@Autowired
 	private EditoraService editoraService;
-	
+
 	@Autowired
 	private EditoraRepository editoraRepository;
-	
+
 	@Autowired
 	private ClienteService clienteService;
 
-
-
-	@GetMapping("/home")
-	public String home2() {
-		return "admin/pagInicial";
+	@GetMapping
+	public String paginaInicial() {
+		return "index";
 	}
-	
-	
+
+	@GetMapping("index")
+	public String paginaIndex() {
+		return "index";
+	}
+
 	@GetMapping("/sobre")
 	public String paginaSobre() {
-		return "admin/adminSobre";
+		return "clientes/sobre";
 	}
-	
+
+	@GetMapping("/login")
+	public String paginaLogin() {
+		return "login";
+	}
+
 	@RequestMapping("/listarLivros")
 	public ModelAndView listarLivros() {
-		ModelAndView modelAnsView = new ModelAndView("admin/listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAll();
+		ModelAndView modelAnsView = new ModelAndView("clientes/getLivros");
+		Iterable<Livro> livros = livroService.findAll();
 		modelAnsView.addObject("livros", livros);
 		return modelAnsView;
 	}
-	
-	@RequestMapping("/getLivrosMaisBaratos")
-	public ModelAndView buscarPeloPrecoMenorQue(){
-		ModelAndView model = new ModelAndView("admin/listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAllPage();
+
+	@RequestMapping("/livrosMaisBaratos")
+	public ModelAndView listarLivros2() {
+		ModelAndView model = new ModelAndView("clientes/getLivros");
+		Iterable<Livro> livros = livroService.findAllPage();
 		model.addObject("livros", livros);
 		return model;
 	}
-	
-	@GetMapping("/cadastrarLivro")
-	public String novoLivro(Livro novoLivro,Model model) {
-		model.addAttribute(new Livro());
-		model.addAttribute("editoras", editoraService.findAll());
-		model.addAttribute("autores", autorService.findAll());
-		return "admin/cadastro/NewLivro";
-	}
 
-	@GetMapping("/editarLivro/{id}")
-	public String editarLivro(@PathVariable(value="id") Long id,Livro livro,Model model) {
-		
-		Livro livro1 = livroService.findById(id).get();
-		model.addAttribute("livro",livro1);
-		livro = livro1;
-		model.addAttribute("autores",autorService.findAll());
-		model.addAttribute("editoras",editoraService.findAll());
-		return "admin/cadastro/EditarLivro";
-	}
-	
 	@GetMapping("/listarAutores")
 	public String listarAutores(Model model) {
 		List<Autor> autores = autorService.findAll();
 		model.addAttribute("autores", autores);
 		return "admin/listagem/getAutores";
 	}
-	
-	@GetMapping("/cadastrarAutor")
-	public String pagCadastro() {
-		return "admin/cadastro/NewAutor";
-	}
 
 	@GetMapping("/listarEditoras")
 	public String listarEditoras(Model model) {
 		List<Editora> lista = editoraRepository.findAll();
-		model.addAttribute("editoras",lista);
-		return "admin/listagem/getEditora";
-	}
-	
-	@GetMapping("/cadastrarEditora")
-	public String paginaNovaCategoria() {
-		return "admin/cadastro/NewEditora";
+		model.addAttribute("editoras", lista);
+		return "/listagem/getEditora";
 	}
 
-
-	@GetMapping("/listarClientes")
-	public String listarClientes(Model model) {
-		List<Cliente> autores = clienteService.findAll();
-		model.addAttribute("clientes", autores);
-		return "admin/listagem/getClientes";
-	}
-	
 	@GetMapping("/cadastrarCliente")
 	public String paginaNovoCliente() {
-		return "admin/cadastro/NewCliente";
+		return "clientes/NovoCliente";
 	}
-	
-	
-	
+
+	@PostMapping("/createCliente")
+	public String create(Cliente cliente) {
+		clienteService.create(cliente);
+		return "redirect:/login";
+	}
+
 }

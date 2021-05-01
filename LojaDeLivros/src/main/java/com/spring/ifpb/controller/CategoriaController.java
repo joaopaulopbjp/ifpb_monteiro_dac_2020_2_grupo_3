@@ -46,11 +46,6 @@ public class CategoriaController {
 			return "Categoria excluida com sucesso!";
 		}
 
-//		@DeleteMapping
-//		public String deleteById(long id) {
-//			categoriaRepository.deleteById(id);
-//			return "Categoria excluida com sucesso!";
-//		}
 		
 		@PutMapping
 		public String atualizarCategoria(Categoria c) {

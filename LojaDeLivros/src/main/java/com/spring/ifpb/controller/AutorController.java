@@ -1,15 +1,10 @@
 package com.spring.ifpb.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +18,11 @@ public class AutorController {
 	@Autowired
 	private AutorService autorService;
 
-
+	
+	/*
+	 * Metódos Crud de Autor
+	 *
+	 */
 
 	@GetMapping("/{id}")
 	public String buscarPeloID(@PathVariable(value = "id")Long id, Model model) {
@@ -31,11 +30,6 @@ public class AutorController {
 		return "buscarPeloID";
 	}
 
-	@GetMapping("/ola")
-	public String run(Model model) {
-		model.addAttribute("listaCompleta", "Ola Mundo");
-		return "OlaMundo";
-	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/createAutor")
 	public String create(Autor a) {
@@ -43,16 +37,6 @@ public class AutorController {
 		return "redirect:/listarAutores";
 	}
 
-
-//	@GetMapping("/{id}")
-//	public Autor buscarPeloId(@PathVariable(value = "id") long id) {
-//		return autorService.findById(id);
-//	}
-//
-//	@GetMapping("/{nome}")
-//	public Autor buscarPeloNome(@PathVariable(value = "nome") String nome) {
-//		return autorService.findByNome(nome);
-//	}
 
 	@GetMapping("/excluir/{id}")
 	public String delete(@PathVariable(value="id") Long id) {

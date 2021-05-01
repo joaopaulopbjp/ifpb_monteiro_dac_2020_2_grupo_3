@@ -14,11 +14,24 @@ public class EditoraService {
 	@Autowired
 	private EditoraRepository repositoryEditora;
 
-	public Editora buscarEditoraPeloId(@PathVariable(value="id")long id) {
+	public Editora findById(@PathVariable(value="id")long id) {
 		return repositoryEditora.findById(id);
 	}
 	
 	public List<Editora> findAll(){
 		return repositoryEditora.findAll();
 	}
+	
+	public void save(Editora editora) {
+		repositoryEditora.save(editora);
+	}
+	
+	public void deleteById(Long id) {
+		repositoryEditora.deleteById(id);
+	}
+	
+	public void atualizarEditora(Editora editora) {
+		repositoryEditora.save(editora);
+	}
+	
 }

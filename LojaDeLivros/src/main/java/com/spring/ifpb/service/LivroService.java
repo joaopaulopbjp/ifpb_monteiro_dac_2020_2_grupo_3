@@ -47,8 +47,7 @@ public class LivroService {
 		 return repositoryLivro.findById(id);
 	 }
 	 
-//	 public Page<Livro> buscaPaginadoMenorValor(BigDecimal preco, int numDaPag){
-//			Pageable paginacao = PageRequest.of(numDaPag, 3, Sort.by(Sort.Direction.ASC, "preco"));
-//			return repositoryLivro.findByPrecoLessThan(preco, paginacao);
-//		}
+	 public Livro findByTitulo(String titulo) {
+		 return repositoryLivro.findByTitulo(titulo);
+	 }
 }
