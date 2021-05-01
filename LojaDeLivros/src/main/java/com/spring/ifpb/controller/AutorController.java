@@ -30,13 +30,6 @@ public class AutorController {
 		model.addAttribute("autor", autorService.findById(id));
 		return "buscarPeloID";
 	}
-//	
-//	@GetMapping("/buscarPeloEmail")
-//	public String econtrarAutorPeloEmail(String email, Model model) {
-//
-//		model.addAttribute("buscarPeloEmail", autorService.findByEmail(email));
-//		return "buscarPeloEmail";
-//	}
 
 	@GetMapping("/ola")
 	public String run(Model model) {
@@ -55,16 +48,16 @@ public class AutorController {
 //	public Autor buscarPeloId(@PathVariable(value = "id") long id) {
 //		return autorService.findById(id);
 //	}
-
+//
 //	@GetMapping("/{nome}")
 //	public Autor buscarPeloNome(@PathVariable(value = "nome") String nome) {
 //		return autorService.findByNome(nome);
 //	}
 
-	@DeleteMapping
-	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+	@GetMapping("/excluir/{id}")
+	public String delete(@PathVariable(value="id") Long id) {
 		autorService.delete(id);
-		return ResponseEntity.ok().build();
+		return "redirect:/admin/listarAutores";
 	}
 
 	@PutMapping

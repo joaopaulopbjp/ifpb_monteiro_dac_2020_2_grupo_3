@@ -53,7 +53,7 @@ public class clientePageController {
 	
 	@GetMapping("/sobre")
 	public String paginaSobre() {
-		return "cliente/sobre";
+		return "clientes/sobre";
 	}
 	
 	@GetMapping("/login")
@@ -63,7 +63,7 @@ public class clientePageController {
 
 	@RequestMapping("/listarLivros")
 	public ModelAndView listarLivros() {
-		ModelAndView modelAnsView = new ModelAndView("admin/listagem/getLivros");
+		ModelAndView modelAnsView = new ModelAndView("clientes/getLivros");
 		Iterable<Livro> livros= livroService.findAll();
 		modelAnsView.addObject("livros", livros);
 		return modelAnsView;
@@ -81,14 +81,19 @@ public class clientePageController {
 	public String listarEditoras(Model model) {
 		List<Editora> lista = editoraRepository.findAll();
 		model.addAttribute("editoras",lista);
-		return "admin/listagem/getEditora";
+		return "/listagem/getEditora";
 	}
 	
 	@GetMapping("/cadastrarCliente")
 	public String paginaNovoCliente() {
-		return "admin/cadastro/NewCliente";
+		return "clientes/NovoCliente";
 	}
 	
+	@PostMapping("/createCliente")
+	public String create(Cliente cliente) { 
+		clienteService.create(cliente);
+		return "redirect:/login";
+	}
 	
 	
 }

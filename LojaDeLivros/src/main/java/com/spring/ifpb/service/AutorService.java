@@ -40,7 +40,6 @@ public class AutorService {
 	}
 	
 	public void delete(long id) {
-		Autor entity = repositoryAutor.findById(id);
-		repositoryAutor.delete(entity);
+		repositoryAutor.deleteById(id);
 	}
 }

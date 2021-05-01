@@ -20,7 +20,7 @@ public class LivroService {
 		return repositoryLivro.findAll();
 	}
 	
-	public List<Livro> findAllPege(){
+	public List<Livro> findAllPage(){
 		return repositoryLivro.findAll(Sort.by(Sort.Direction.ASC, "preco"));
 	}
 	

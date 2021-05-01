@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{pagModelo :: head('Pagina Inicial')}">
+<meta charset="UTF-8">
+	<script src="/js/excluir.js"></script>
+</head>
+<body>
+	<navbar th:insert="~{pagModelo :: navUser('Lista de Livros')}"></navbar>
+
+
+	<!-- aqui começa a lista -->
+	<h3></h3>
+	<!-- espaçamento antes da lista-->
+	<div class="container" style="margin-left: auto;">
+		<table class="table table-sm table-striped table-bordered">
+			<thead class="thead-dark">
+				<tr align="center">
+					<th>Id</th>
+					<th>Disponíveis</th>
+					<th>Título</th>
+					<th>Valor</th>
+					<th>Autor</th>
+					<th>Editora</th>
+					<th>Categoria</th>
+					<th>Ações</th>
+
+				</tr>
+			</thead>
+
+			<tbody align="center">
+				<tr th:each="livro : ${livros}">
+					<td><span th:text="${livro.id}"></span></td>
+					<td><span th:text="${livro.qtdEstoque}"></span></td>
+					<td><span th:text="${livro.titulo}"></span></td>
+					<td>R$ <span th:text="${livro.preco}"></span></td>
+					<td><span th:text="${livro.autor.nome}"></span></td>
+					<td><span th:text="${livro.editora.nome}"></span></td>
+					<td><span th:text="${livro.categoria}"></span></td>
+					<td class="actions" align="center">
+						<a	class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px"
+							href="#">detalhes</a>
+						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
+							th:href="@{/admin/editarLivro/{id}(id=${livro.id})}">Editar</a>
+						<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px" 
+							th:href="@{/livro/excluir/{id}(id=${livro.id})}">Excluir</a>
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+	
+		
+		<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<form action="/livro/excluir" method="DELETE">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Tem certeza
+								que quer excluir este livro?</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div align="center">
+								<button type="submit" style="margin: 50px; border-width: 10px" 
+								class="btn btn-danger" >Excluir</button>
+	
+								<button type="button" style="margin: 50px; border-width: 10px"
+									class="btn btn-" data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+						<div class="modal-footer"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>

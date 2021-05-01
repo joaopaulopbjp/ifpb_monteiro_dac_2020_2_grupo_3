@@ -38,14 +38,14 @@ public class LivroController {
 	@RequestMapping(method = RequestMethod.POST, value = "/createLivro")
 	public String createLivro(@ModelAttribute  Livro novoLivro,Model model) {
 		livroService.adicionarNovoLivro(novoLivro);
-		return "redirect:/listarLivros";
+		return "redirect:/admin/listarLivros";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/editarLivro")
 	public String atualizarLivro(@ModelAttribute  Livro novoLivro,Model model) {
 		livroService.adicionarNovoLivro(novoLivro);
 		model.addAttribute("livros",livroService.findAll());
-		return "redirect:/listarLivros";
+		return "redirect:/admin/listarLivros";
 	}
 	
 	@GetMapping("/{titulo}")
@@ -56,7 +56,7 @@ public class LivroController {
 	public String excluirLivro(@PathVariable(value="id") Long id, Model model) {
 		livroService.deletarLivroId(id);
 		model.addAttribute("livros",livroService.findAll());
-		return "redirect:/listarLivros";
+		return "redirect:/admin/listarLivros";
 	}
 
 	/*
@@ -66,16 +66,10 @@ public class LivroController {
 	 */
 	@RequestMapping("/getLivrosMaisBaratos")
 	public ModelAndView buscarPeloPrecoMenorQue(){
-		ModelAndView model = new ModelAndView("listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAllPege();
+		ModelAndView model = new ModelAndView("admin/listagem/getLivros");
+		Iterable<Livro> livros= livroService.findAllPage();
 		model.addObject("livros", livros);
 		return model;
-	}
-
-	@PutMapping
-	public String atualizarLivro(Livro l) {
-		livroRepository.save(l);
-		return "livro Atualizado";
 	}
 
 }

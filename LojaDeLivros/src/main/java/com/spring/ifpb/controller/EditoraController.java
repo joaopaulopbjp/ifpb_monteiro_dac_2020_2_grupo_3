@@ -26,7 +26,7 @@ public class EditoraController {
 	public String listarEditoras(Model model) {
 		List<Editora> lista = editoraRepository.findAll();
 		model.addAttribute("editoras",lista);
-		return "listagem/getEditora";
+		return "/admin/listagem/getEditora";
 	}
 
 	@GetMapping("/{id}")
@@ -37,13 +37,13 @@ public class EditoraController {
 	@PostMapping("/novaEditora")
 	public String salvarLivro(Editora e) {
 		editoraRepository.save(e);
-		return "redirect:/editoras/listar";
+		return "redirect:/admin/listarEditoras";
 	}
 
-	@DeleteMapping
-	public String deleteEditora(Editora e) {
-		editoraRepository.delete(e);
-		return "Editora excluida com sucesso!";
+	@GetMapping("/excluir/{id}")
+	public String deleteEditora(@PathVariable(value="id")long id) {
+		editoraRepository.deleteById(id);
+		return "redirect:/admin/listarEditoras";
 	}
 
 //	@DeleteMapping
