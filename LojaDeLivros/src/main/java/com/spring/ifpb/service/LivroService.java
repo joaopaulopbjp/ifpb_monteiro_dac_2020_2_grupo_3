@@ -1,6 +1,5 @@
 package com.spring.ifpb.service;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -43,11 +42,15 @@ public class LivroService {
 		 repositoryLivro.deleteById(id);
 	 }
 	 
-	 public Optional<Livro> findById(Long id) {
-		 return repositoryLivro.findById(id);
+	 public Livro findById(Long id) {
+		 return repositoryLivro.findById(id).get();
 	 }
 	 
 	 public Livro findByTitulo(String titulo) {
 		 return repositoryLivro.findByTitulo(titulo);
 	 }
+	 
+	 public Livro updateLivro(Livro novoLivro) {
+			return repositoryLivro.save(novoLivro);
+		}
 }

@@ -6,9 +6,10 @@
 	<script src="/js/excluir.js"></script>
 </head>
 <body>
-	<navbar th:insert="~{pagModelo :: navbar('Lista de Livros')}"></navbar>
+	<navbar th:insert="~{pagModelo :: navUser('Carrinho de Compras')}">
+	</navbar>
 
-
+	
 	<!-- aqui começa a lista -->
 	<h3></h3>
 	<!-- espaçamento antes da lista-->
@@ -17,7 +18,6 @@
 			<thead class="thead-dark">
 				<tr align="center">
 					<th>Id</th>
-					<th>Disponíveis</th>
 					<th>Título</th>
 					<th>Valor</th>
 					<th>Autor</th>
@@ -31,28 +31,35 @@
 			<tbody align="center">
 				<tr th:each="livro : ${livros}">
 					<td><span th:text="${livro.id}"></span></td>
-					<td><span th:text="${livro.qtdEstoque}"></span></td>
 					<td><span th:text="${livro.titulo}"></span></td>
 					<td>R$ <span th:text="${livro.preco}"></span></td>
 					<td><span th:text="${livro.autor.nome}"></span></td>
 					<td><span th:text="${livro.editora.nome}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
 					<td class="actions" align="center">
-						<a	class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px"
-							href="#">detalhes</a>
-						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
-							th:href="@{/admin/editarLivro/{id}(id=${livro.id})}">Editar</a>
 						<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px" 
-							th:href="@{/livro/excluir/{id}(id=${livro.id})}">Excluir</a>
-						
+							th:href="@{/carrinhoDeCompras/removerDoCarrinho/{id}(id=${livro.id})}">Remover</a>
 					</td>
 				</tr>
 
 			</tbody>
 
 		</table>
-	
-		
+		<h3></h3>
+		<div class="container">
+			<div class="card" style="width: 18rem;">
+  			<div class="card-body">
+   			 <h5 class="card-title">Valor Total:</h5>
+   			 <p class="card-text">
+   			 <tr>
+    		 <td colspan="4"></td>
+    		 <td th:text="${#numbers.formatCurrency(#aggregates.sum(livros.![preco]))}">R$ 180,00</td>
+  			</tr>
+   			 </p>
+			<button type="button" class="btn btn-info btn-lg">Finalizar Pedido</button>
+  		</div>
+	</div>
+		</div>
 		<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
 			<div class="modal-dialog" role="document">

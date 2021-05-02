@@ -85,7 +85,7 @@ public class AdminPageController {
 	@GetMapping("/editarLivro/{id}")
 	public String editarLivro(@PathVariable(value="id") Long id,Livro livro,Model model) {
 		
-		Livro livro1 = livroService.findById(id).get();
+		Livro livro1 = livroService.findById(id);
 		model.addAttribute("livro",livro1);
 		livro = livro1;
 		model.addAttribute("autores",autorService.findAll());
