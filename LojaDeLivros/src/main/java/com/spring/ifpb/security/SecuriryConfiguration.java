@@ -43,10 +43,8 @@ public class SecuriryConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-//			.antMatchers("/addRoles").permitAll()
-//			.antMatchers("/dadosIniciais").permitAll()
-//			.antMatchers("/livrosMaisBaratos").permitAll()
 			.antMatchers("/*").permitAll()
+			.antMatchers("/carrinhoDeCompras/**").permitAll()
 			.antMatchers("/resources**").permitAll()
 			.antMatchers("/","jdbc:mysql://localhost/**").permitAll()
 			.antMatchers("/resources/**").permitAll()
