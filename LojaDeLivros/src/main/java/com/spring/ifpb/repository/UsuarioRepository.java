@@ -8,6 +8,7 @@ import com.spring.ifpb.model.Cliente;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Cliente, Long>{
 
+	Cliente findByUsername(String username);
 	Cliente findByCpf(Long cpf);
 	Cliente findByEmail(String email);
 	

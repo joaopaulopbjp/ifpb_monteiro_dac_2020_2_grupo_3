@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,17 +36,27 @@ public class Livro {
 	@Column(name = "QTD_ESTOQUE")
 	private Integer qtdEstoque;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.REMOVE})
 	private Editora editora;
-
-	@ManyToOne
+	
+	@ManyToOne(cascade = {CascadeType.REMOVE})
 	private Autor autor;
 
 	
-	
-	
-	
-	
+	public Livro(String titulo, String categoria, BigDecimal preco, Integer qtdEstoque, Editora editora, Autor autor) {
+		super();
+		this.titulo = titulo;
+		this.categoria = categoria;
+		this.preco = preco;
+		this.qtdEstoque = qtdEstoque;
+		this.editora = editora;
+		this.autor = autor;
+	}
+
+	public Livro() {
+
+	}
+
 	public Autor getAutor() {
 		return autor;
 	}

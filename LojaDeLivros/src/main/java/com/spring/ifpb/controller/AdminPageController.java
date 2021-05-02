@@ -44,7 +44,7 @@ public class AdminPageController {
 	/*
 	 * Principais endereços da página de adm
 	 * 
-	 * Contendo metódos básicos de um administrador
+	 * Contendo metódos básicos para reendereçamento de um usuário administrador
 	 */
 
 	@GetMapping("/home")

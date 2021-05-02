@@ -18,21 +18,19 @@
 		<table class="table table-sm table-striped table-bordered">
 			<thead class="thead-dark">
 				<tr align="center">
-					<th>Id</th>
 					<th>Disponíveis</th>
 					<th>Título</th>
-					<th>Valor</th>
+					<th style="min-width: 100px;">Valor</th>
 					<th>Autor</th>
 					<th>Editora</th>
 					<th>Categoria</th>
-					<th>Ações</th>
+					<th style="min-width: 300px;">Ações</th>
 
 				</tr>
 			</thead>
 
 			<tbody align="center">
 				<tr th:each="livro : ${livros}">
-					<td><span th:text="${livro.id}"></span></td>
 					<td><span th:text="${livro.qtdEstoque}"></span></td>
 					<td><span th:text="${livro.titulo}"></span></td>
 					<td>R$ <span th:text="${livro.preco}"></span></td>
@@ -40,14 +38,10 @@
 					<td><span th:text="${livro.editora.nome}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
 					<td class="actions" align="center">
-						<a	class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px"
+						<a	class="btn btn-info btn-xs" style="margin-left: 10px; margin-right: 10px"
 							href="#">Detalhes</a>
-						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
-							th:href="@{/admin/editarLivro/{id}(id=${livro.id})}">Editar</a>
-						<a class="btn btn-danger btn-xs" style="margin-left: 10px; margin-right: 10px" 
-							th:href="@{/livro/excluir/{id}(id=${livro.id})}">Excluir</a>
-						<a class="btn btn-info btn-xs" style="margin-left: 10px; margin-right: 10px" 
-							th:href="@{/carrinhoDeCompras/addAoCarrinho/{id}(id=${livro.id})}">Add to Cart</a>
+						<a class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px" 
+							th:href="@{/carrinhoDeCompras/addAoCarrinho/{id}(id=${livro.id})}">Add ao carrinho</a>
 					</td>
 				</tr>
 

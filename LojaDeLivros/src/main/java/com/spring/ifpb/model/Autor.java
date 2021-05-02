@@ -19,6 +19,15 @@ public class Autor {
 	@Column(name = "NOME_AUTOR")
 	private String nome;
 
+	
+	public Autor() {
+
+	}
+
+	public Autor(String nome) {
+		this.nome = nome;
+	}
+
 	public Long getId() {
 		return id;
 	}

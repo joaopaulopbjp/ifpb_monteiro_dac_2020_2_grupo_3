@@ -19,7 +19,7 @@
 					<th>Id</th>
 					<th>Disponíveis</th>
 					<th>Título</th>
-					<th>Valor</th>
+					<th style="min-width: 100px;">Valor</th>
 					<th>Autor</th>
 					<th>Editora</th>
 					<th>Categoria</th>
@@ -37,7 +37,7 @@
 					<td><span th:text="${livro.autor.nome}"></span></td>
 					<td><span th:text="${livro.editora.nome}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
-					<td class="actions" align="center">
+					<td style="min-width: 350px;" class="actions" align="center">
 						<a	class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px"
 							href="#">detalhes</a>
 						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px"
