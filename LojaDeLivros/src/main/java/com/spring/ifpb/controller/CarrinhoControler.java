@@ -50,14 +50,22 @@ public class CarrinhoControler {
 		model.addAttribute("livros", this.getCarrinho());
 		return "carrinho/carrinho";
 	}
-	
-	@GetMapping("/finalizarPedido/{id}")
-	public String finalizar(@PathVariable(value="id") Long id) {
-		Livro livro = livroService.findById(id);
-		livro.setQtdEstoque(livro.getQtdEstoque()-1);
-		livroService.updateLivro(livro);
-		
+	/*Este metodo, só esvazia o carrinho*/
+	@GetMapping("/finalizarPedido")
+	public String finalizar(Model model) {
+		this.setCarrinho(new ArrayList<Livro>());
 		return "redirect:/listarLivros";
+	}
+	
+	
+	/*Este metodo deveria, diminuir a quantidade de livros
+	 * Que são comprados em casa pedido, porém não foi concluido
+	 * Usaremos o metodo acima, apenas para limpar o carrinho 
+	 */
+	@GetMapping("/finalizar")
+	public String finalizarPedido(@PathVariable(value="livros") List<Livro> livros, Model model) {
+		
+		return "redirect:/carrinho";
 	}
 
 	public List<Livro> getCarrinho() {
