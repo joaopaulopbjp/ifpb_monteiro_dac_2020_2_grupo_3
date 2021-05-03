@@ -38,8 +38,12 @@
 					<td><span th:text="${livro.editora.nome}"></span></td>
 					<td><span th:text="${livro.categoria}"></span></td>
 					<td class="actions" align="center">
+						<!-- 
 						<a	class="btn btn-info btn-xs" style="margin-left: 10px; margin-right: 10px"
 							href="#">Detalhes</a>
+						 -->
+						<a class="btn btn-primary btn-xs" th:href="@{/livro/buscar{id} (id=${livro.id})}" data-toggle="modal"
+							data-target="#modalDetalhesLivro">Detalhes</a> 
 						<a class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px" 
 							th:href="@{/carrinhoDeCompras/addAoCarrinho/{id}(id=${livro.id})}">Add ao carrinho</a>
 					</td>
@@ -48,35 +52,87 @@
 			</tbody>
 
 		</table>
+		<!-- 
+		<nav aria-label="page navigation">
+			<ul class="pagination justify-content-center">
+				<li class="page-item" href="#" tabindex="-1" th:text="i : ${#numbers.sequence(0,livros.totalPages-1)}">
+					<a class="page-link" th:text="${i}" ></a>
+				</li>
+			</ul>
+		</nav>
+		 -->
 	
+		<nav aria-label="Page navigation example">
+  			<ul class="pagination justify-content-center">
+    			<li class="page-item">
+      				<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    			</li>
+    			<li href="#" th:each="i : ${#numbers.sequence(0,livros.totalPages-1)}">
+				    <li class="page-item"><a class="page-link" th:href="@{/listarLivros/{i} (numPag=${i})" th:text="${i}"></a></li>
+				    <li class="page-item"><a class="page-link" th:href="@{/listarLivros/{numPag} (numPag=${i})" th:text="${i}"></a></li>
+				    <li class="page-item"><a class="page-link" th:href="@{/listarLivros/{numPag} (numPag=${i})" th:text="${i}"></a></li>
+				</li>
+     					<a class="page-link" href="#" tabindex="+1">Next</a>
+   				</li>
+  			</ul>
+		</nav>
 		
-		<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-			<div class="modal-dialog" role="document">
-				<form action="/livro/excluir" method="DELETE">
-					<div class="modal-content">
+		
+		<div class="modal fade" id="modalDetalhesLivro" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document" >
+					<div class="modal-content" >
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Tem certeza
-								que quer excluir este livro?</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Fechar">
+							<h5 class="modal-title" id="exampleModalLabel">Detalhes do livro: </h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
 							<div align="center">
-								<button type="submit" style="margin: 50px; border-width: 10px" 
-								class="btn btn-danger" >Excluir</button>
+								<table class="table table-sm table-striped table-bordered">
+									<thead class="thead-dark">
+										<tr align="center">
+											<th>Disponíveis</th>
+											<th>Título</th>
+											<th style="min-width: 100px;">Valor</th>
+											<th>Autor</th>
+											<th>Editora</th>
+											<th>Categoria</th>
+										</tr>
+									</thead>
+						<!-- 
+									<tbody align="center">
+										<tr th:object="${}">
+											<td><span th:text="${livro.qtdEstoque}"></span></td>
+											<td><span th:text="${livro.titulo}"></span></td>
+											<td>R$ <span th:text="${livro.preco}"></span></td>
+											<td><span th:text="${livro.autor.nome}"></span></td>
+											<td><span th:text="${livro.editora.nome}"></span></td>
+											<td><span th:text="${livro.categoria}"></span></td>
+										</tr>
+						 -->
+						
+									</tbody>
+						
+								</table>
 	
-								<button type="button" style="margin: 50px; border-width: 10px"
-									class="btn btn-" data-dismiss="modal">Fechar</button>
 							</div>
 						</div>
-						<div class="modal-footer"></div>
+						<div class="modal-footer">
+						<!-- 
+								<a class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px" 
+									th:href="@{/carrinhoDeCompras/addAoCarrinho/{id}(id=${livro.id})}">Add ao carrinho</a>
+						 -->
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+						</div>
 					</div>
-				</form>
 			</div>
 		</div>
+		
+		
+		
+		
 	</div>
 </body>
 

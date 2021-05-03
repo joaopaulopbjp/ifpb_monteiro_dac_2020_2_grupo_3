@@ -2,6 +2,9 @@ package com.spring.ifpb.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +22,16 @@ public class LivroService {
 		return repositoryLivro.findAll();
 	}
 	
-	public List<Livro> findAllPage(){
-		return repositoryLivro.findAll(Sort.by(Sort.Direction.ASC, "preco"));
+	//bucar paginada por preço
+	public Page<Livro> findAllByPrecoless(int numPag){
+		Pageable page = PageRequest.of(numPag, 5,(Sort.by(Sort.Direction.ASC, "preco")));
+		return repositoryLivro.findAll(page);
+	}
+	
+	//buca paginada normal
+	public Page<Livro> findAllPageable(int numPag){
+		Pageable page = PageRequest.of(numPag, 5);
+		return repositoryLivro.findAll(page);
 	}
 	
 	public Livro livroExiste(String titulo) {

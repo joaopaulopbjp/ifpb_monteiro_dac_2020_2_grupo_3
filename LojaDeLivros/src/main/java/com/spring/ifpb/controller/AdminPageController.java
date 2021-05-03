@@ -3,11 +3,13 @@ package com.spring.ifpb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.ifpb.model.Autor;
@@ -67,11 +69,10 @@ public class AdminPageController {
 	}
 	
 	@RequestMapping("/getLivrosMaisBaratos")
-	public ModelAndView buscarPeloPrecoMenorQue(){
-		ModelAndView model = new ModelAndView("admin/listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAllPage();
-		model.addObject("livros", livros);
-		return model;
+	public String buscarPeloPrecoMenorQue(Model model,@RequestParam(defaultValue = "0")int numPag){
+		Page<Livro> livros= livroService.findAllByPrecoless(numPag);
+		model.addAttribute("livros", livros);
+		return "admin/listagem/getLivros";
 	}
 	
 	@GetMapping("/cadastrarLivro")

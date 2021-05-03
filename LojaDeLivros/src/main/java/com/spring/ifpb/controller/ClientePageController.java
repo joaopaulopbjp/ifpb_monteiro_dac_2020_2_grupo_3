@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.ifpb.model.Autor;
@@ -22,6 +26,7 @@ import com.spring.ifpb.model.Editora;
 import com.spring.ifpb.model.Livro;
 import com.spring.ifpb.model.Role;
 import com.spring.ifpb.repository.EditoraRepository;
+import com.spring.ifpb.repository.LivroRepository;
 import com.spring.ifpb.repository.RoleRepository;
 import com.spring.ifpb.service.AutorService;
 import com.spring.ifpb.service.ClienteService;
@@ -40,6 +45,11 @@ public class ClientePageController {
 	
 	@Autowired
 	private LivroService livroService;
+	
+	@Autowired
+	private LivroRepository livroRepo;
+	
+	
 
 	@Autowired
 	private EditoraRepository editoraRepository;
@@ -132,18 +142,50 @@ public class ClientePageController {
 		return "redirect:/indice";
 	}
 
-	@RequestMapping("/listarLivros")
-	public ModelAndView listarLivros() {
-		ModelAndView modelAnsView = new ModelAndView("clientes/getLivros");
-		Iterable<Livro> livros = livroService.findAll();
-		modelAnsView.addObject("livros", livros);
-		return modelAnsView;
-	}
+//	@RequestMapping("/listarLivros")
+//	public ModelAndView listarLivros() {
+//		ModelAndView modelAnsView = new ModelAndView("clientes/getLivros");
+//		Iterable<Livro> livros = livroService.findAll();
+//		modelAnsView.addObject("livros", livros);
+//		return modelAnsView;
+//	}
 
-	@RequestMapping("/livrosMaisBaratos")
-	public ModelAndView listarLivros2() {
+	@RequestMapping("/listarLivros/{numPag}")
+	public String listarLivros2(Model model, @RequestParam(defaultValue="0") int numPag) {
+		Page<Livro> livros = livroService.findAllPageable(numPag);
+		model.addAttribute("livros", livros);
+		model.addAttribute("totalPages", livros.getTotalPages());
+		model.addAttribute("currentPage", numPag);
+		return "clientes/getLivros";
+	}
+	@RequestMapping("/listarLivros")
+	public String listarLivros(Model model, @RequestParam(defaultValue="0") int numPag) {
+		Page<Livro> livros = livroService.findAllPageable(numPag);
+		model.addAttribute("livros", livros);
+		model.addAttribute("totalPages", livros.getTotalPages());
+		model.addAttribute("currentPage", numPag);
+		return "clientes/getLivros";
+	}
+	
+//	@RequestMapping("/listarLivros/{numPag}")
+//	public String listarLivros(Model model, @RequestParam(defaultValue="0") int numPag) {
+//		model.addAttribute("livros", livroRepo.findAll(PageRequest.of(numPag, 5)));
+//		return "clientes/getLivros";
+//	}
+	
+	
+//	@RequestMapping("/livrosMaisBaratos")
+//	public ModelAndView listarLivros2() {
+//		ModelAndView model = new ModelAndView("clientes/getLivros");
+//		Iterable<Livro> livros = livroService.findAllPage();
+//		model.addObject("livros", livros);
+//		return model;
+//	}
+
+	@RequestMapping("/livrosMaisBaratos/{numPag}")
+	public ModelAndView listarLivros2(@PathVariable(value="numPag")int numPag) {
 		ModelAndView model = new ModelAndView("clientes/getLivros");
-		Iterable<Livro> livros = livroService.findAllPage();
+		Page<Livro> livros = livroService.findAllByPrecoless(numPag);
 		model.addObject("livros", livros);
 		return model;
 	}

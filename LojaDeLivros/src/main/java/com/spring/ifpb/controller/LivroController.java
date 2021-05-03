@@ -37,9 +37,9 @@ public class LivroController {
 		return "redirect:/admin/listarLivros";
 	}
 	
-	@GetMapping("/{titulo}")
-	public Livro buscarPeloTitulo(@PathVariable(value="id") String titulo){
-		return livroService.findByTitulo(titulo);
+	@GetMapping("/buscar/{id}")
+	public Livro buscarPeloId(@PathVariable(value="id") long id){
+		return livroService.findById(id);
 	}
 	@GetMapping("/excluir/{id}")
 	public String excluirLivro(@PathVariable(value="id") Long id, Model model) {
