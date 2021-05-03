@@ -42,9 +42,9 @@
 						<a	class="btn btn-info btn-xs" style="margin-left: 10px; margin-right: 10px"
 							href="#">Detalhes</a>
 						 -->
-						<a class="btn btn-primary btn-xs" th:href="@{/livro/buscar{id} (id=${livro.id})}" data-toggle="modal"
+						<a class="btn btn-info btn-xs" th:href="@{/livro/buscar{id} (id=${livro.id})}" data-toggle="modal"
 							data-target="#modalDetalhesLivro">Detalhes</a> 
-						<a class="btn btn-primary btn-xs" style="margin-left: 10px; margin-right: 10px" 
+						<a class="btn btn-success btn-xs" style="margin-left: 10px; margin-right: 10px" 
 							th:href="@{/carrinhoDeCompras/addAoCarrinho/{id}(id=${livro.id})}">Add ao carrinho</a>
 					</td>
 				</tr>
@@ -53,12 +53,19 @@
 
 		</table>
 		<!-- 
-		<nav aria-label="page navigation">
-			<ul class="pagination justify-content-center">
-				<li class="page-item" href="#" tabindex="-1" th:text="i : ${#numbers.sequence(0,livros.totalPages-1)}">
-					<a class="page-link" th:text="${i}" ></a>
+		<nav aria-label="Page navigation example">
+  			<ul class="pagination justify-content-center">
+    			<li class="page-item">
+      				<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    			</li>
+    			<li href="#" th:each="i : ${#numbers.sequence(0,livros.totalPages-1)}">
+				    <li class="page-item"><a class="page-link" href="@{/listarLivros/{i} (numPag=${i})" text="${i}">1</a></li>
+				    <li class="page-item"><a class="page-link" href="@{/listarLivros/{numPag} (numPag=${i})" text="${i}">2</a></li>
+				    <li class="page-item"><a class="page-link" href="@{/listarLivros/{numPag} (numPag=${i})" text="${i}">3</a></li>
 				</li>
-			</ul>
+     					<a class="page-link" href="#" tabindex="+1">Next</a>
+   				</li>
+  			</ul>
 		</nav>
 		 -->
 	
@@ -68,9 +75,9 @@
       				<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
     			</li>
     			<li href="#" th:each="i : ${#numbers.sequence(0,livros.totalPages-1)}">
-				    <li class="page-item"><a class="page-link" th:href="@{/listarLivros/{i} (numPag=${i})" th:text="${i}"></a></li>
-				    <li class="page-item"><a class="page-link" th:href="@{/listarLivros/{numPag} (numPag=${i})" th:text="${i}"></a></li>
-				    <li class="page-item"><a class="page-link" th:href="@{/listarLivros/{numPag} (numPag=${i})" th:text="${i}"></a></li>
+				    <li class="page-item"><a class="page-link" href="#" text="${i}">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#" text="${i}">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#" text="${i}">3</a></li>
 				</li>
      					<a class="page-link" href="#" tabindex="+1">Next</a>
    				</li>

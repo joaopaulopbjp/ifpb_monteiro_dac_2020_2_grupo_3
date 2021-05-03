@@ -61,9 +61,9 @@ public class AdminPageController {
 	}
 	
 	@RequestMapping("/listarLivros")
-	public ModelAndView listarLivros() {
+	public ModelAndView listarLivros(Model model,@RequestParam(defaultValue = "0")int numPag) {
 		ModelAndView modelAnsView = new ModelAndView("admin/listagem/getLivros");
-		Iterable<Livro> livros= livroService.findAll();
+		Page<Livro> livros= livroService.findAllPageable(numPag);
 		modelAnsView.addObject("livros", livros);
 		return modelAnsView;
 	}
@@ -74,6 +74,7 @@ public class AdminPageController {
 		model.addAttribute("livros", livros);
 		return "admin/listagem/getLivros";
 	}
+	
 	
 	@GetMapping("/cadastrarLivro")
 	public String novoLivro(Livro novoLivro,Model model) {

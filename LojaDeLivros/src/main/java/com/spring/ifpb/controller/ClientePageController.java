@@ -150,14 +150,14 @@ public class ClientePageController {
 //		return modelAnsView;
 //	}
 
-	@RequestMapping("/listarLivros/{numPag}")
-	public String listarLivros2(Model model, @RequestParam(defaultValue="0") int numPag) {
-		Page<Livro> livros = livroService.findAllPageable(numPag);
-		model.addAttribute("livros", livros);
-		model.addAttribute("totalPages", livros.getTotalPages());
-		model.addAttribute("currentPage", numPag);
-		return "clientes/getLivros";
-	}
+//	@RequestMapping("/listarLivros/{numPag}")
+//	public String listarLivros2(Model model, @RequestParam(defaultValue="0") int numPag) {
+//		Page<Livro> livros = livroService.findAllPageable(numPag);
+//		model.addAttribute("livros", livros);
+//		model.addAttribute("totalPages", livros.getTotalPages());
+//		model.addAttribute("currentPage", numPag);
+//		return "clientes/getLivros";
+//	}
 	@RequestMapping("/listarLivros")
 	public String listarLivros(Model model, @RequestParam(defaultValue="0") int numPag) {
 		Page<Livro> livros = livroService.findAllPageable(numPag);
@@ -175,15 +175,15 @@ public class ClientePageController {
 	
 	
 //	@RequestMapping("/livrosMaisBaratos")
-//	public ModelAndView listarLivros2() {
+//	public ModelAndView listarLivros2(@RequestParam(defaultValue="0") int numPag) {
 //		ModelAndView model = new ModelAndView("clientes/getLivros");
-//		Iterable<Livro> livros = livroService.findAllPage();
+//		Iterable<Livro> livros = livroService.findAllByPrecoless(numPag);
 //		model.addObject("livros", livros);
 //		return model;
 //	}
 
-	@RequestMapping("/livrosMaisBaratos/{numPag}")
-	public ModelAndView listarLivros2(@PathVariable(value="numPag")int numPag) {
+	@RequestMapping("/livrosMaisBaratos")
+	public ModelAndView listarLivros2(@RequestParam(defaultValue="0")int numPag) {
 		ModelAndView model = new ModelAndView("clientes/getLivros");
 		Page<Livro> livros = livroService.findAllByPrecoless(numPag);
 		model.addObject("livros", livros);
